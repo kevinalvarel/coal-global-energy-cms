@@ -1,7 +1,8 @@
-import { AboutUs } from "@/components/landing/sections/AboutUs";
-import { GallerySection } from "@/components/landing/sections/Gallery";
-import HeroSection from "@/components/landing/sections/Hero";
-import { LocationSection } from "@/components/landing/sections/Location";
+import { AboutUs } from "@/components/landing/AboutUs";
+import { CtaSection } from "@/components/landing/Cta";
+import { GallerySection } from "@/components/landing/Gallery";
+import HeroSection from "@/components/landing/Hero";
+import { LocationSection } from "@/components/landing/Location";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <AboutUs />
       <GallerySection />
       <LocationSection />
+      <CtaSection />
     </main>
   );
 }

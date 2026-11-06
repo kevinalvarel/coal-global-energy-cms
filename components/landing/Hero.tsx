@@ -43,7 +43,7 @@ export default function HeroSection() {
         >
           <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-5 leading-[1.1] px-6 md:px-0">
             Solusi {""}
-            <span className="relative inline-block">
+            <span className="relative inline-block text-primary">
               Stockpile
               <svg
                 viewBox="0 0 200 12"
@@ -77,17 +77,17 @@ export default function HeroSection() {
             (stockpile) berkapasitas besar di jalur distribusi pelabuhan
             Bojonegara.
           </p>
-          <div className="flex flex-row sm:flex-row items-center justify-center gap-4 w-[300px] md:w-full mb-16 mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-[300px] md:w-full mb-16 mx-auto">
             <Button
               variant={"default"}
-              className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-md hover:bg-(--color-primary)/90 text-white w-full sm:w-auto shadow-lg shadow-(--color-primary)/20 transition-all hover:shadow-(--color-primary)/40 rounded-sm cursor-pointer"
+              className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-lg hover:bg-(--color-primary)/90 text-white w-full sm:w-auto shadow-lg shadow-(--color-primary)/20 transition-all hover:shadow-(--color-primary)/40  cursor-pointer"
             >
               Ajukan Permintaan Harga (RFQ)
             </Button>
 
             <Button
               variant={"outline"}
-              className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-md w-full sm:w-auto border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-300 dark:hover:bg-neutral-800 transition-colors rounded-sm cursor-pointer"
+              className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-lg w-full sm:w-auto border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-300 dark:hover:bg-neutral-800 transition-colors  cursor-pointer"
             >
               Unduh Company Profile PDF
             </Button>

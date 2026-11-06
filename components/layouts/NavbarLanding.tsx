@@ -14,11 +14,11 @@ import { useState } from "react";
 
 export function NavbarLanding() {
   const navItems = [
-    { name: "Product", link: "/product" },
-    { name: "Customer", link: "/customer" },
-    { name: "Solution", link: "/solution" },
-    { name: "Pricing", link: "/pricing" },
-    { name: "Company", link: "/company" },
+    { name: "Produk", link: "/products" },
+    { name: "Layanan", link: "/services" },
+    { name: "Solusi", link: "/solution" },
+    { name: "Berita", link: "/news" },
+    { name: "Legal", link: "/legal" },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
