@@ -4,11 +4,11 @@ import { ExternalLink, MapPin } from "lucide-react";
 import { addressLines, mapLink, mapSrc } from "@/lib/map";
 
 const navItems = [
-  { name: "Product", href: "/product" },
-  { name: "Customer", href: "/customer" },
-  { name: "Solution", href: "/solution" },
-  { name: "Pricing", href: "/pricing" },
-  { name: "Company", href: "/company" },
+  { name: "Produk", href: "/products" },
+  { name: "Layanan", href: "/services" },
+  { name: "Solusi", href: "/solution" },
+  { name: "Berita", href: "/news" },
+  { name: "Legal", href: "/legal" },
 ];
 
 const contacts = ["[Email]", "[Telepon]", "[Media Sosial]"];

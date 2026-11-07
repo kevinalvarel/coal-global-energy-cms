@@ -32,7 +32,7 @@ const products = [
     segment:
       "PLTU, pabrik tekstil, smelter, pabrik semen, industri kimia dan kertas",
     description:
-      "Batu bara untuk kebutuhan pembangkit dan industri, bersumber dari tambang berizin di Jambi, Sumatera, dan Kalimantan.",
+      "Batu bara untuk kebutuhan pembangkit dan industri, bersumber dari tambang berizin.",
     specs: [
       "Kalori GAR / ADB",
       "Total Moisture (TM)",
@@ -96,7 +96,13 @@ const products = [
 const buttonClass =
   "inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
 
-function SpecList({ specs, inverted }: { specs: string[]; inverted?: boolean }) {
+function SpecList({
+  specs,
+  inverted,
+}: {
+  specs: string[];
+  inverted?: boolean;
+}) {
   return (
     <ul className="flex flex-wrap gap-2">
       {specs.map((spec) => (
@@ -155,8 +161,8 @@ export default function ProductPage() {
           </h1>
           <p className="mt-5 text-sm md:text-lg text-slate-600 dark:text-neutral-300 leading-relaxed">
             PT. Coal Global Energy memasok empat lini komoditas energi dari
-            tambang dan pemasok resmi di Indonesia, didukung fasilitas
-            stockpile di jalur pelabuhan Bojonegara, Banten.
+            tambang dan pemasok resmi di Indonesia, didukung fasilitas stockpile
+            di jalur pelabuhan Bojonegara, Banten.
           </p>
           <p className="mt-3 text-sm text-slate-600 dark:text-neutral-400">
             Spesifikasi teknis dikonfirmasi per pengiriman melalui COA dan surat
@@ -180,7 +186,9 @@ export default function ProductPage() {
                 <p className="mt-4 text-sm sm:text-base text-white/80 leading-relaxed">
                   {coal.description}
                 </p>
-                <p className="mt-2 text-sm text-white/60">Untuk {coal.segment}.</p>
+                <p className="mt-2 text-sm text-white/60">
+                  Untuk {coal.segment}.
+                </p>
                 <p className="mt-4 text-sm text-white/70">{coal.note}</p>
                 <a
                   href={rfqHref("COA & Harga", coal.name)}
