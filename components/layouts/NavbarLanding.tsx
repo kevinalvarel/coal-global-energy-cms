@@ -17,8 +17,8 @@ export function NavbarLanding() {
     { name: "Produk", link: "/products" },
     { name: "Layanan", link: "/services" },
     { name: "Solusi", link: "/solution" },
+    { name: "Perizinan", link: "/legal" },
     { name: "Berita", link: "/news" },
-    { name: "Legal", link: "/legal" },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

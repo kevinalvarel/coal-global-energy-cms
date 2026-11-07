@@ -1,3 +1,5 @@
+import { FaWhatsapp } from "react-icons/fa";
+
 const WHATSAPP_URL = "https://wa.me/6289504836618";
 
 export function CtaSection() {
@@ -16,9 +18,9 @@ export function CtaSection() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex w-full sm:w-auto items-center justify-center rounded-md bg-green-700 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-green-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+            className="mt-8 inline-flex w-full sm:w-auto items-center justify-center rounded-md bg-green-700 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-green-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary gap-3"
           >
-            Hubungi via WhatsApp
+            <FaWhatsapp size={25} /> Hubungi via WhatsApp
           </a>
         </div>
       </div>

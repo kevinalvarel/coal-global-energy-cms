@@ -1,5 +1,5 @@
 import { ComingSoon } from "@/components/pages/ComingSoon";
 
 export default function PricingPage() {
-  return <ComingSoon title="Pricing" />;
+  return <ComingSoon title="Berita" />;
 }

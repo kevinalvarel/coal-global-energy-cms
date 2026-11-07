@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import HeroProducts from "@/components/landing/products/hero-products";
 
 export const metadata: Metadata = {
   title: "Produk & Komoditas | PT Coal Global Energy",
@@ -125,52 +126,10 @@ export default function ProductPage() {
   const [coal, ...commodities] = products;
 
   return (
-    <main className="w-full pt-32 pb-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <header className="max-w-2xl">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground leading-[1.2]">
-            Produk &{" "}
-            <span className="relative inline-block text-primary">
-              Komoditas
-              <svg
-                viewBox="0 0 200 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="absolute -bottom-2 left-0 w-full"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M2 9 C30 3, 60 11, 100 6 C140 1, 165 10, 198 5"
-                  stroke="#0152cb"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  fill="none"
-                />
-                <path
-                  d="M5 9.5 C40 5, 80 10, 120 7 C155 4, 180 8.5, 196 7"
-                  stroke="#0152cb"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  fill="none"
-                  opacity="0.5"
-                />
-              </svg>
-            </span>{" "}
-            Energi
-          </h1>
-          <p className="mt-5 text-sm md:text-lg text-slate-600 dark:text-neutral-300 leading-relaxed">
-            PT. Coal Global Energy memasok empat lini komoditas energi dari
-            tambang dan pemasok resmi di Indonesia, didukung fasilitas stockpile
-            di jalur pelabuhan Bojonegara, Banten.
-          </p>
-          <p className="mt-3 text-sm text-slate-600 dark:text-neutral-400">
-            Spesifikasi teknis dikonfirmasi per pengiriman melalui COA dan surat
-            penawaran.
-          </p>
-        </header>
-
-        <div className="mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <main className="w-full pb-24">
+      <HeroProducts />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <article className="lg:col-span-3 rounded-2xl bg-[#0b1a33] text-white p-6 sm:p-8 md:p-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
               <div className="lg:col-span-7">
