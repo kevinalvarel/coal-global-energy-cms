@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import HeroSolutions from "@/components/landing/solutions/hero-solutions";
+import { FaWhatsapp } from "react-icons/fa";
 
 export const metadata: Metadata = {
   title: "Solusi per Sektor Industri | PT Coal Global Energy",
@@ -232,9 +233,9 @@ export default function SolutionPage() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${buttonClass} bg-[#0CC0DF] text-[#06317F] hover:bg-[#0CC0DF]/90 focus-visible:ring-[#0CC0DF] focus-visible:ring-offset-[#0b1a33]`}
+                className="mt-6 inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-md bg-green-700 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-green-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1a33]"
               >
-                Konsultasi via WhatsApp
+                <FaWhatsapp size={20} /> Konsultasi via WhatsApp
               </a>
               <a
                 href={rfqHref("Konsultasi Solusi")}

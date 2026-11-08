@@ -39,62 +39,14 @@ export default function HeroSection() {
             item: textVariants,
           }}
         >
-          <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-normal text-gray-900 dark:text-white mb-5 leading-[1.1] px-6 md:px-0">
+          <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-5 leading-[1.1] px-6 md:px-0">
             Mitra Terpercaya Rantai Pasok{" "}
             <span className="relative inline-block text-primary">
               Batu Bara
-              <svg
-                viewBox="0 0 200 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="absolute -bottom-2 left-0 w-full"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M2 9 C30 3, 60 11, 100 6 C140 1, 165 10, 198 5"
-                  stroke="#003AF9"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  fill="none"
-                />
-                <path
-                  d="M5 9.5 C40 5, 80 10, 120 7 C155 4, 180 8.5, 196 7"
-                  stroke="#003AF9"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  fill="none"
-                  opacity="0.5"
-                />
-              </svg>
             </span>{" "}
             &amp;{" "}
             <span className="relative inline-block text-primary">
               Fasilitas Stockpile{" "}
-              <svg
-                viewBox="0 0 200 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="absolute -bottom-4 left-0 w-full"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M2 9 C30 3, 60 11, 100 6 C140 1, 165 10, 198 5"
-                  stroke="#003AF9"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  fill="none"
-                />
-                <path
-                  d="M5 9.5 C40 5, 80 10, 120 7 C155 4, 180 8.5, 196 7"
-                  stroke="#003AF9"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                  fill="none"
-                  opacity="0.5"
-                />
-              </svg>
             </span>
             Strategis Berskala Nasional hingga Ekspor
           </h1>

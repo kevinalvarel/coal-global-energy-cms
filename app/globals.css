@@ -38,7 +38,7 @@
   --sidebar-border: #e4e8ef;
   --sidebar-ring: #0152cb;
   --font-sans: Inter, ui-sans-serif, sans-serif, system-ui;
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-serif: Averia_Serif_Libre;
   --font-mono:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
@@ -99,7 +99,7 @@
   --sidebar-border: #282828;
   --sidebar-ring: #525252;
   --font-sans: Inter, ui-sans-serif, sans-serif, system-ui;
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-serif: Averia_Serif_Libre;
   --font-mono:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;

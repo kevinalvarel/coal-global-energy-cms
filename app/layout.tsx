@@ -1,7 +1,7 @@
 // For adding custom fonts with other frameworks, see:
 // https://tailwindcss.com/docs/font-family
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Noto_Serif, Averia_Serif_Libre } from "next/font/google";
 import "./globals.css";
 import { NavbarLanding } from "@/components/layouts/NavbarLanding";
 import { Footer } from "@/components/layouts/Footer";
@@ -9,6 +9,12 @@ import { Footer } from "@/components/layouts/Footer";
 const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
+});
+
+const fontSerif = Averia_Serif_Libre({
+  weight: ["300", "700"],
+  subsets: ["latin"],
+  variable: "--font-serif",
 });
 
 export const metadata: Metadata = {
@@ -24,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fontSans.variable} antialiased`}>
+      <body className={`${fontSans.variable} ${fontSerif.variable}antialiased`}>
         <NavbarLanding />
         {children}
         <Footer />
