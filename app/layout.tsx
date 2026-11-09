@@ -31,9 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${fontSans.variable} ${fontSerif.variable}antialiased`}>
-        <NavbarLanding />
         {children}
-        <Footer />
       </body>
     </html>
   );
