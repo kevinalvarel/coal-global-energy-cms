@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion, Variants } from "motion/react";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-scroll";
 
 export default function HeroProducts() {
   const textVariants: Variants = {
@@ -54,6 +55,10 @@ export default function HeroProducts() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-[300px] md:w-full mb-16 mx-auto">
             <Button
               variant={"default"}
+              nativeButton={false}
+              render={
+                <Link to="cta" smooth={true} duration={500} offset={-100} />
+              }
               className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-lg hover:bg-(--color-primary)/90 text-white w-full sm:w-auto shadow-lg shadow-(--color-primary)/20 transition-all hover:shadow-(--color-primary)/40  cursor-pointer"
             >
               Minta Penawaran (RFQ)
@@ -61,6 +66,15 @@ export default function HeroProducts() {
 
             <Button
               variant={"outline"}
+              nativeButton={false}
+              render={
+                <Link
+                  to="product-details"
+                  smooth={true}
+                  duration={500}
+                  offset={-100}
+                />
+              }
               className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-lg w-full sm:w-auto border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-300 dark:hover:bg-neutral-800 transition-colors  cursor-pointer"
             >
               Lihat Spesifikasi Produk
@@ -79,11 +93,11 @@ export default function HeroProducts() {
               className="relative w-full rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 shadow-xl dark:bg-gray-900"
             >
               <Image
-                src="https://cdn.21st.dev/assets/localized/fc3ccc2cd42f9a07d120f454efdd2c2ecf95bc252f30ee0abc007ae8c22665f9.png"
+                src="/images/landing/gallery/operasional-4.png"
                 alt="Desktop Dashboard"
                 width={800}
                 height={800}
-                className="object-cover object-left w-full h-auto"
+                className="object-cover object-left w-full h-auto aspect-video"
                 priority
               />
             </motion.div>
@@ -94,7 +108,7 @@ export default function HeroProducts() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="absolute -bottom-2 left-0 right-0 h-50 md:h-60 lg:h-80 bg-gradient-to-t from-white via-white/80 dark:from-black dark:via-black/80 to-transparent z-30 pointer-events-none rounded-md"
+            className="absolute inset-0 z-0 bg-[radial-gradient(125%_125%_at_50%_10%,transparent_0%,rgba(255,255,255,0.8)_50%,var(--color-primary)_100%)] dark:bg-[radial-gradient(125%_125%_at_50%_10%,transparent_0%,rgba(0,0,0,0.8)_40%,var(--color-primary)_100%)]"
           />
         </div>
       </div>

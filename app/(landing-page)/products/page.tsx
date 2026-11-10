@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HeroProducts from "@/components/landing/products/hero-products";
+import { FaWhatsapp } from "react-icons/fa";
 
 export const metadata: Metadata = {
   title: "Produk & Komoditas | PT Coal Global Energy",
@@ -8,6 +9,11 @@ export const metadata: Metadata = {
 };
 
 const CONTACT_EMAIL = "pt.coalglobalenergy@gmail.com";
+const WHATSAPP_URL =
+  "https://wa.me/6289504836618?text=" +
+  encodeURIComponent(
+    "Halo PT. Coal Global Energy, saya ingin menanyakan produk dan pasokan komoditas energi.",
+  );
 
 function rfqHref(kind: string, product: string) {
   const subject = `${kind} ${product} - PT. Coal Global Energy`;
@@ -128,7 +134,10 @@ export default function ProductPage() {
   return (
     <main className="w-full pb-24">
       <HeroProducts />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24">
+      <section
+        id="product-details"
+        className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <article className="lg:col-span-3 rounded-2xl bg-[#0b1a33] text-white p-6 sm:p-8 md:p-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
@@ -149,12 +158,6 @@ export default function ProductPage() {
                   Untuk {coal.segment}.
                 </p>
                 <p className="mt-4 text-sm text-white/70">{coal.note}</p>
-                <a
-                  href={rfqHref("COA & Harga", coal.name)}
-                  className={`${buttonClass} mt-6 w-full sm:w-auto bg-[#0CC0DF] text-[#06317F] hover:bg-[#0CC0DF]/90 focus-visible:ring-[#0CC0DF]`}
-                >
-                  {coal.cta}
-                </a>
               </div>
 
               <div className="lg:col-span-5">
@@ -192,17 +195,42 @@ export default function ProductPage() {
               <div className="mt-2">
                 <SpecList specs={product.specs} />
               </div>
-
-              <a
-                href={rfqHref("Penawaran", product.name)}
-                className={`${buttonClass} mt-6 border border-border bg-background text-foreground hover:bg-muted focus-visible:ring-ring`}
-              >
-                {product.cta}
-              </a>
             </article>
           ))}
         </div>
-      </div>
+
+        <section
+          id="cta"
+          className="w-full mt-16 md:mt-24 rounded-2xl bg-[#0b1a33] text-white p-6 sm:p-8 md:p-10"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8">
+              <p className="text-xs font-semibold tracking-wider uppercase text-[#0CC0DF]">
+                Konsultasi &amp; Pengadaan
+              </p>
+              <h2 className="mt-2 text-2xl sm:text-3xl font-bold tracking-tight">
+                Butuh Pasokan Komoditas atau Spesifikasi Khusus?
+              </h2>
+              <p className="mt-3 text-sm sm:text-base text-white/80 leading-relaxed">
+                Sampaikan kebutuhan tonase per bulan, spesifikasi kalori
+                (GAR/ADB), biomassa (PKS/wood chip), atau agregat batu split
+                Anda. Tim kami siap mengirimkan Certificate of Analysis (COA)
+                dan penawaran harga terbaik.
+              </p>
+            </div>
+            <div className="lg:col-span-4 flex items-center lg:justify-end">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-md bg-green-700 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-green-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1a33]"
+              >
+                <FaWhatsapp size={20} /> Konsultasi via WhatsApp
+              </a>
+            </div>
+          </div>
+        </section>
+      </section>
     </main>
   );
 }

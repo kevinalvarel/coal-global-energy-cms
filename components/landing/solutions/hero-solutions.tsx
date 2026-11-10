@@ -3,6 +3,36 @@ import Image from "next/image";
 import { motion, Variants } from "motion/react";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { Button } from "@/components/ui/button";
+import LogoLoop from "@/components/react-bits/logo-loop";
+import { Link } from "react-scroll";
+
+const imageLogos = [
+  {
+    src: "/icons/kingland.png",
+    alt: "Kingland Logo",
+    href: "https://company1.com",
+  },
+  {
+    src: "/icons/pokphand.png",
+    alt: "Pokphand Logo",
+    href: "https://company2.com",
+  },
+  {
+    src: "/icons/monokem.png",
+    alt: "Monokem Logo",
+    href: "https://company3.com",
+  },
+  {
+    src: "/icons/sge.png",
+    alt: "SGE Logo",
+    href: "https://company3.com",
+  },
+  {
+    src: "/icons/xinyuan.png",
+    alt: "Monokem Logo",
+    href: "https://company3.com",
+  },
+];
 
 export default function HeroSolutions() {
   const textVariants: Variants = {
@@ -54,6 +84,10 @@ export default function HeroSolutions() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-[300px] md:w-full mb-16 mx-auto">
             <Button
               variant={"default"}
+              nativeButton={false}
+              render={
+                <Link to="cta" smooth={true} duration={500} offset={-100} />
+              }
               className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-lg hover:bg-(--color-primary)/90 text-white w-full sm:w-auto shadow-lg shadow-(--color-primary)/20 transition-all hover:shadow-(--color-primary)/40  cursor-pointer"
             >
               Konsultasi Solusi Industri
@@ -61,6 +95,15 @@ export default function HeroSolutions() {
 
             <Button
               variant={"outline"}
+              nativeButton={false}
+              render={
+                <Link
+                  to="solution-details"
+                  smooth={true}
+                  duration={500}
+                  offset={-100}
+                />
+              }
               className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-lg w-full sm:w-auto border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-300 dark:hover:bg-neutral-800 transition-colors  cursor-pointer"
             >
               Pelajari Sektor Industri
@@ -76,26 +119,37 @@ export default function HeroSolutions() {
               initial={{ opacity: 0, y: 30, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="relative w-full rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 shadow-xl dark:bg-gray-900"
             >
-              <Image
-                src="https://cdn.21st.dev/assets/localized/fc3ccc2cd42f9a07d120f454efdd2c2ecf95bc252f30ee0abc007ae8c22665f9.png"
-                alt="Desktop Dashboard"
-                width={800}
-                height={800}
-                className="object-cover object-left w-full h-auto"
-                priority
-              />
+              {/* Trusted by Leader */}
+              <div id="trusted-by-leaders-placeholder" className="pt-12">
+                <div className="text-center max-w-xl mx-auto mb-8">
+                  <span className="text-xs uppercase font-extrabold tracking-widest text-slate-400 dark:text-neutral-500">
+                    Dipercaya oleh Pelaku Industri & Mitra Terkemuka
+                  </span>
+                </div>
+
+                {/* Container Slot Mitra: Siap Anda tambahkan logo-logo mitra (Kingland, Pokphand, Monokem Surya, dll) */}
+                <div className="w-full min-h-[110px]">
+                  <LogoLoop
+                    logos={imageLogos}
+                    direction="left"
+                    focus={0.5}
+                    tiltX={0}
+                    tiltY={0}
+                    logoHeight={120}
+                    fadeOut
+                    speed={50}
+                    fadeOutWidth={0.12}
+                    scrollBoost={0}
+                    draggable
+                    intro
+                  />
+                </div>
+              </div>
             </motion.div>
           </div>
 
           {/* Fade Overlay for both images */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="absolute -bottom-2 left-0 right-0 h-50 md:h-60 lg:h-80 bg-gradient-to-t from-white via-white/80 dark:from-black dark:via-black/80 to-transparent z-30 pointer-events-none rounded-md"
-          />
         </div>
       </div>
     </div>

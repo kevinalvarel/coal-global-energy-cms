@@ -2,29 +2,24 @@ import AccordionGallery from "@/components/layouts/AccordionGallery";
 
 const items = [
   {
-    image: "https://picsum.photos/id/1015/900/1200",
-    label: "Canyon",
-    link: "#",
+    image: "/images/landing/gallery/operasional-1.jpeg",
+    label: "Unloading Coal 1",
   },
   {
-    image: "https://picsum.photos/id/1018/900/1200",
-    label: "Ridgeline",
-    link: "#",
+    image: "/images/landing/gallery/operasional-2.jpeg",
+    label: "Unloading Coal 2",
   },
   {
-    image: "https://picsum.photos/id/1039/900/1200",
-    label: "Falls",
-    link: "#",
+    image: "/images/landing/gallery/office.jpeg",
+    label: "Office",
   },
   {
-    image: "https://picsum.photos/id/1043/900/1200",
-    label: "Harbour",
-    link: "#",
+    image: "/images/landing/gallery/operasional-4.png",
+    label: "Stockpile",
   },
   {
-    image: "https://picsum.photos/id/1044/900/1200",
-    label: "Skyline",
-    link: "#",
+    image: "/images/landing/gallery/operasional-5.jpeg",
+    label: "Stockpile",
   },
 ];
 

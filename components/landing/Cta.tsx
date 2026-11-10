@@ -4,7 +4,7 @@ const WHATSAPP_URL = "https://wa.me/6289504836618";
 
 export function CtaSection() {
   return (
-    <section className="w-full pb-24 md:pb-32">
+    <section id="cta" className="w-full pb-24 md:pb-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-4xl bg-primary px-6 py-14 sm:px-12 md:px-16 md:py-20 text-center">
           <h2 className="mx-auto max-w-2xl text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-primary-foreground leading-tight">

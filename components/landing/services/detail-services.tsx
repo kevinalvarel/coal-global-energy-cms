@@ -5,6 +5,7 @@ import { ExternalLink } from "lucide-react";
 import { mapLink } from "@/lib/map";
 import { FaWhatsapp } from "react-icons/fa";
 import JellyRadio from "@/components/react-bits/jelly-radio";
+import Image from "next/image";
 
 interface FacilityFact {
   term: string;
@@ -152,7 +153,10 @@ export function DetailServices({
         </div>
 
         {/* Facility / Product Info Card */}
-        <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <section
+          id="detail-services"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+        >
           <div className="lg:col-span-2 rounded-2xl bg-[#0b1a33] text-white p-6 sm:p-8 md:p-10">
             <p className="text-xs font-semibold tracking-wider uppercase text-[#0CC0DF]">
               {isStockpile ? "Fasilitas" : "Komoditas"}
@@ -165,7 +169,7 @@ export function DetailServices({
             <p className="mt-4 text-sm sm:text-base text-white/80 leading-relaxed">
               {isStockpile
                 ? "Fasilitas berada di Jl. Raya Bojonegara No. 04 Kp. Pangsoran RT.002/RW.007, Desa Bojonegara, Kecamatan Bojonegara, Kabupaten Serang, Banten 42454."
-                : "Penyediaan batu bara untuk kebutuhan pembangkit dan industri — PLTU, pabrik tekstil, smelter, pabrik semen, industri kimia dan kertas — bersumber dari tambang berizin di Indonesia."}
+                : "Penyediaan batu bara untuk kebutuhan pembangkit dan industri — PLTU, pabrik tekstil, smelter, pabrik semen, industri kimia, pabrik ban, pabrik hebel, pabrik baja, dan kertas, bersumber dari tambang berizin di Indonesia."}
             </p>
 
             <dl className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
@@ -182,17 +186,24 @@ export function DetailServices({
             </dl>
           </div>
 
-          <div className="lg:col-span-1 flex flex-col justify-center rounded-2xl border-2 border-dashed border-border bg-card p-6 sm:p-8 text-center">
-            <p className="text-xs font-semibold tracking-wider uppercase text-slate-600 dark:text-neutral-400">
-              {isStockpile
-                ? "[FOTO FASILITAS MENYUSUL]"
-                : "[FOTO KOMODITAS MENYUSUL]"}
-            </p>
-            <p className="mt-3 text-sm text-slate-600 dark:text-neutral-300 leading-relaxed">
-              {isStockpile
-                ? "Foto asli area stockpile Bojonegara akan ditampilkan setelah dokumentasi dan data kapasitas dikonfirmasi perusahaan."
-                : "Foto dokumentasi tumpukan batu bara dan aktivitas distribusi akan ditampilkan setelah dikonfirmasi perusahaan."}
-            </p>
+          <div className="lg:col-span-1 flex flex-col justify-center rounded-2xl bg-card text-center">
+            {isStockpile ? (
+              <Image
+                src="/images/landing/hero.png"
+                alt="Stockpile"
+                className="rounded-2xl"
+                height={500}
+                width={500}
+              />
+            ) : (
+              <Image
+                src="/images/landing/gallery/coal.jpeg"
+                alt="Stockpile"
+                className="rounded-2xl"
+                height={500}
+                width={500}
+              />
+            )}
           </div>
         </section>
 
@@ -267,7 +278,10 @@ export function DetailServices({
         </section>
 
         {/* Location / CTA */}
-        <section className="mt-20 md:mt-28 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <section
+          id="cta"
+          className="mt-20 md:mt-28 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch"
+        >
           <div className="lg:col-span-7 rounded-2xl border border-border bg-card p-6 sm:p-8 md:p-10">
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
               {isStockpile ? "Lokasi fasilitas" : "Distribusi & Pengiriman"}

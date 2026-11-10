@@ -114,7 +114,7 @@ export default function SolutionPage() {
     <main className="w-full pb-24">
       <HeroSolutions />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24">
-        <section>
+        <section id="solution-details">
           <article className="rounded-2xl bg-[#0b1a33] text-white p-6 sm:p-8 md:p-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
               <div className="lg:col-span-7">
@@ -131,12 +131,6 @@ export default function SolutionPage() {
                   {featured.description}
                 </p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                  <a
-                    href={rfqHref(featured.sector)}
-                    className={`${buttonClass} bg-[#0CC0DF] text-[#06317F] hover:bg-[#0CC0DF]/90 focus-visible:ring-[#0CC0DF] focus-visible:ring-offset-[#0b1a33]`}
-                  >
-                    Minta Penawaran Pembangkit
-                  </a>
                   <Link
                     href="/services"
                     className={`${buttonClass} border border-white/30 text-white hover:bg-white/10 focus-visible:ring-white focus-visible:ring-offset-[#0b1a33]`}
@@ -216,7 +210,10 @@ export default function SolutionPage() {
           </ol>
         </section>
 
-        <section className="mt-20 md:mt-28 rounded-2xl bg-[#0b1a33] text-white p-6 sm:p-8 md:p-10">
+        <section
+          id="cta"
+          className="mt-20 md:mt-28 rounded-2xl bg-[#0b1a33] text-white p-6 sm:p-8 md:p-10"
+        >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8">
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
@@ -228,20 +225,14 @@ export default function SolutionPage() {
                 dan jalur distribusi yang sesuai.
               </p>
             </div>
-            <div className="lg:col-span-4 flex flex-col gap-3">
+            <div className="lg:col-span-4 flex items-center lg:justify-end">
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-md bg-green-700 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-green-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1a33]"
+                className="mt-6 lg:mt-0 inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-md bg-green-700 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-green-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1a33]"
               >
                 <FaWhatsapp size={20} /> Konsultasi via WhatsApp
-              </a>
-              <a
-                href={rfqHref("Konsultasi Solusi")}
-                className={`${buttonClass} border border-white/30 text-white hover:bg-white/10 focus-visible:ring-white focus-visible:ring-offset-[#0b1a33]`}
-              >
-                Kirim Permintaan Penawaran
               </a>
             </div>
           </div>
