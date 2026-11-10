@@ -11,6 +11,7 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
+import { Link } from "react-scroll";
 
 export function NavbarLanding() {
   const navItems = [
@@ -31,7 +32,9 @@ export function NavbarLanding() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="primary">Contacts</NavbarButton>
+            <Link to="cta" smooth={true} duration={500} offset={-100}>
+              <NavbarButton variant="primary">Contacts</NavbarButton>
+            </Link>
           </div>
         </NavBody>
 
@@ -60,13 +63,15 @@ export function NavbarLanding() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
-              >
-                Contacts
-              </NavbarButton>
+              <Link to="cta" smooth={true} duration={500} offset={-100}>
+                <NavbarButton
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="primary"
+                  className="w-full"
+                >
+                  Contacts
+                </NavbarButton>
+              </Link>
             </div>
           </MobileNavMenu>
         </MobileNav>
