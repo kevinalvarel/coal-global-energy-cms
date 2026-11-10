@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { NavDocuments } from "@/components/admin/nav-documents";
+import { NavContents } from "@/components/admin/nav-documents";
 import { NavMain } from "@/components/admin/nav-main";
 import { NavSecondary } from "@/components/admin/nav-secondary";
 import { NavUser } from "@/components/admin/nav-user";
@@ -21,131 +21,68 @@ import {
   ChartBarIcon,
   FolderIcon,
   UsersIcon,
-  CameraIcon,
-  FileTextIcon,
   Settings2Icon,
-  CircleHelpIcon,
   SearchIcon,
-  DatabaseIcon,
-  FileChartColumnIcon,
-  FileIcon,
-  CommandIcon,
+  Clock,
+  Pencil,
+  FileText,
 } from "lucide-react";
 import Image from "next/image";
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "nanti giganti",
+    email: "wowobimjikersamtu@gmail.com ",
   },
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/admin",
       icon: <LayoutDashboardIcon />,
     },
     {
-      title: "Lifecycle",
-      url: "#",
+      title: "Analytics",
+      url: "/admin/analytics",
+      icon: <ChartBarIcon />,
+    },
+  ],
+  NavContent: [
+    {
+      title: "Semua Postingan",
+      url: "/admin/semua-postingan",
       icon: <ListIcon />,
     },
     {
-      title: "Analytics",
-      url: "#",
-      icon: <ChartBarIcon />,
+      title: "Buat Postingan",
+      url: "/admin/buat-postingan",
+      icon: <Pencil />,
     },
     {
-      title: "Projects",
-      url: "#",
+      title: "Draf",
+      url: "/admin/draf",
       icon: <FolderIcon />,
     },
     {
-      title: "Team",
-      url: "#",
-      icon: <UsersIcon />,
-    },
-  ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: <CameraIcon />,
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Proposal",
-      icon: <FileTextIcon />,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: <FileTextIcon />,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
+      title: "Terjadwalkan",
+      url: "/admin/terjadwalkan",
+      icon: <Clock />,
     },
   ],
   navSecondary: [
     {
-      title: "Settings",
-      url: "#",
+      title: "Pengaturan Umum",
+      url: "/admin/pengaturan-umum",
       icon: <Settings2Icon />,
     },
     {
-      title: "Get Help",
-      url: "#",
-      icon: <CircleHelpIcon />,
+      title: "Pengaturan Pengguna",
+      url: "/admin/pengaturan-pengguna",
+      icon: <UsersIcon />,
     },
     {
-      title: "Search",
-      url: "#",
+      title: "Pencarian",
+      url: "/admin/pencarian",
       icon: <SearchIcon />,
-    },
-  ],
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: <DatabaseIcon />,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: <FileChartColumnIcon />,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: <FileIcon />,
     },
   ],
 };
@@ -157,7 +94,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton
               className="data-[slot=sidebar-menu-button]:p-1.5!"
-              render={<a href="#" />}
+              render={<a href="/admin" />}
             >
               <Image
                 alt="Logo"
@@ -172,7 +109,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
+        <NavContents items={data.NavContent} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
