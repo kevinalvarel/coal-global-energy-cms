@@ -7,5 +7,6 @@ export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
   }),
+  trustedOrigins: ['localhost:3000'],
   plugins: [nextCookies()],
 });
