@@ -1,9 +1,2 @@
-import * as authSchema from "./schemas/auth-schema";
-import * as contentSchema from "./schemas/content-schema";
-
-const schema = {
-  ...authSchema,
-  ...contentSchema,
-};
-
-export default schema;
+export * from "./schemas/auth-schema";
+export * from "./schemas/content-schema";
