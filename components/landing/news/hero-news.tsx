@@ -1,125 +1,207 @@
 "use client";
-import Image from "next/image";
-import { motion, Variants } from "motion/react";
-import { AnimatedGroup } from "@/components/ui/animated-group";
-import { Button } from "@/components/ui/button";
 
-export default function HeroNews() {
-  const textVariants: Variants = {
-    hidden: { opacity: 0, filter: "blur(10px)", y: 20 },
-    visible: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      transition: {
-        type: "spring",
-        bounce: 0.2,
-        duration: 1,
-      },
-    },
+import { useState, type KeyboardEvent } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { ArrowRight, Calendar, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  formatNewsDate,
+  getLatestNews,
+  type NewsItem,
+} from "@/components/landing/news/news-data";
+
+interface HeroNewsProps {
+  items?: NewsItem[];
+}
+
+export default function HeroNews({ items }: HeroNewsProps) {
+  const slides = items && items.length > 0 ? items : getLatestNews(4);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
+
+  if (slides.length === 0) {
+    return null;
+  }
+
+  const safeIndex = activeIndex % slides.length;
+  const activeSlide = slides[safeIndex];
+  const slideCounter = `${String(safeIndex + 1).padStart(2, "0")} / ${String(
+    slides.length,
+  ).padStart(2, "0")}`;
+
+  const goToPrevious = () => {
+    setActiveIndex((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const goToNext = () => {
+    setActiveIndex((prev) => (prev + 1) % slides.length);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      goToPrevious();
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      goToNext();
+    }
   };
 
   return (
-    <div className=" relative w-full min-h-screen [--color-primary:#003AF9] overflow-hidden py-16 rounded-b-4xl">
-      {/* Radial Gradient Background */}
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(125%_125%_at_50%_10%,#fff_40%,var(--color-primary)_100%)] dark:bg-[radial-gradient(125%_125%_at_50%_10%,#000_40%,var(--color-primary)_100%)]" />
-
-      {/* Hero Content */}
-      <div className="flex flex-col items-center justify-start text-center pt-20 md:pt-10 px-4 pb-0 max-w-7xl mx-auto z-10 relative rounded-none">
-        <AnimatedGroup
-          className="max-w-4xl mx-auto text-center flex flex-col items-center"
-          variants={{
-            container: {
-              visible: {
-                transition: {
-                  staggerChildren: 0.1,
-                },
-              },
-            },
-            item: textVariants,
-          }}
-        >
-          <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-5 leading-[1.1] px-6 md:px-0">
-            Informasi Terkini &amp; {""}
-            <span className="relative inline-block text-primary">
-              Wawasan Industri
-              <svg
-                viewBox="0 0 200 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="absolute -bottom-2 left-0 w-full"
-                preserveAspectRatio="none"
-                aria-hidden="true"
+    <section
+      aria-roledescription="carousel"
+      aria-label="Berita terbaru PT. Coal Global Energy"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+      className="relative w-full overflow-hidden pt-24 pb-10 text-white focus:outline-none md:pt-28 md:pb-14"
+    >
+    <div className="absolute inset-0 z-0 bg-[radial-gradient(125%_125%_at_50%_10%,#fff_40%,var(--color-primary)_100%)] dark:bg-[radial-gradient(125%_125%_at_50%_10%,#000_40%,var(--color-primary)_100%)]" />
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-[#0C0C0C] shadow-sm">
+          <div className="relative min-h-[470px] sm:min-h-[500px] lg:min-h-[540px]">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={activeSlide.slug}
+                initial={prefersReducedMotion ? false : { opacity: 0.35 }}
+                animate={{ opacity: 1 }}
+                exit={prefersReducedMotion ? undefined : { opacity: 0.35 }}
+                transition={{
+                  duration: prefersReducedMotion ? 0 : 0.28,
+                  ease: "easeOut",
+                }}
+                className="absolute inset-0"
               >
-                <path
-                  d="M2 9 C30 3, 60 11, 100 6 C140 1, 165 10, 198 5"
-                  stroke="#003AF9"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  fill="none"
+                <Image
+                  src={activeSlide.imageUrl}
+                  alt={activeSlide.imageAlt}
+                  fill
+                  priority={safeIndex === 0}
+                  sizes="(max-width: 1280px) 100vw, 1280px"
+                  className="object-cover"
                 />
-                <path
-                  d="M5 9.5 C40 5, 80 10, 120 7 C155 4, 180 8.5, 196 7"
-                  stroke="#003AF9"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  fill="none"
-                  opacity="0.5"
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C]/95 via-[#06317F]/85 to-[#06317F]/40 lg:bg-gradient-to-r lg:from-[#06317F]/95 lg:via-[#06317F]/80 lg:to-[#0C0C0C]/35"
                 />
-              </svg>
-            </span>{" "}
-            Energi
-          </h1>
-          <p className="text-sm sm:text-sm md:text-lg lg:text-xl text-neutral-600 dark:text-neutral-300 max-w-[350px]  md:max-w-lg  mx-auto mb-6 md:mb-5">
-            Ikuti perkembangan terbaru kegiatan operasional PT. Coal Global Energy, dinamika pasar batu bara &amp; biomassa, serta insight transisi energi industri.
-          </p>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-[300px] md:w-full mb-16 mx-auto">
-            <Button
-              variant={"default"}
-              className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-lg hover:bg-(--color-primary)/90 text-white w-full sm:w-auto shadow-lg shadow-(--color-primary)/20 transition-all hover:shadow-(--color-primary)/40  cursor-pointer"
-            >
-              Baca Artikel Terbaru
-            </Button>
+              </motion.div>
+            </AnimatePresence>
 
-            <Button
-              variant={"outline"}
-              className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-lg w-full sm:w-auto border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-300 dark:hover:bg-neutral-800 transition-colors  cursor-pointer"
-            >
-              Hubungi Media Relation
-            </Button>
+            <div className="relative z-10 flex min-h-[470px] flex-col justify-between p-6 sm:min-h-[500px] sm:p-8 lg:min-h-[540px] lg:p-12">
+              <div className="flex flex-1 items-end lg:items-center">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={activeSlide.slug}
+                    initial={
+                      prefersReducedMotion ? false : { opacity: 0, y: 10 }
+                    }
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={
+                      prefersReducedMotion ? undefined : { opacity: 0, y: -8 }
+                    }
+                    transition={{
+                      duration: prefersReducedMotion ? 0 : 0.26,
+                      ease: "easeOut",
+                    }}
+                    className="max-w-2xl"
+                  >
+                    <h1 className="font-sans text-[34px] leading-[1.12] font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+                      {activeSlide.title}
+                    </h1>
+
+                    <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[#E5EAF0]">
+                      <span className="font-semibold text-[#0CC0DF]">
+                        {activeSlide.category}
+                      </span>
+                      <span aria-hidden="true" className="text-white/40">
+                        /
+                      </span>
+                      <time
+                        dateTime={activeSlide.publishedAt}
+                        className="inline-flex items-center gap-1.5 text-[#E5EAF0]/90"
+                      >
+                        <Calendar className="size-3.5 text-[#0CC0DF]" />
+                        {formatNewsDate(activeSlide.publishedAt)}
+                      </time>
+                    </div>
+
+                    <p className="mt-4 text-sm leading-relaxed text-[#E5EAF0]/90 sm:text-base">
+                      {activeSlide.excerpt}
+                    </p>
+
+                    <div className="mt-6">
+                      <Link
+                        href={`/news/${activeSlide.slug}`}
+                        className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-[#06317F] transition-colors hover:bg-[#E5EAF0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0CC0DF]"
+                      >
+                        Baca Berita
+                        <ArrowRight className="size-4" />
+                      </Link>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/15 pt-4">
+                <div className="flex flex-wrap items-center gap-2">
+                  <div
+                    role="group"
+                    aria-label="Pilih slide berita terbaru"
+                    className="flex items-center gap-1"
+                  >
+                    {slides.map((slide, index) => {
+                      const isActive = index === safeIndex;
+                      return (
+                        <button
+                          key={slide.slug}
+                          type="button"
+                          onClick={() => setActiveIndex(index)}
+                          aria-label={`Tampilkan berita ${index + 1}: ${slide.title}`}
+                          aria-current={isActive ? "true" : undefined}
+                          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md px-1 transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0CC0DF]"
+                        >
+                          <span
+                            className={`block h-1.5 rounded-full transition-all duration-200 ${
+                              isActive
+                                ? "w-8 bg-[#0CC0DF]"
+                                : "w-4 bg-white/35 hover:bg-white/60"
+                            }`}
+                          />
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <span
+                    aria-live="polite"
+                    className="ml-2 font-mono text-xs font-medium tracking-wider text-[#E5EAF0]/80"
+                  >
+                    {slideCounter}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={goToPrevious}
+                    aria-label="Berita sebelumnya"
+                    className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-white/25 bg-[#06317F]/75 text-white transition-colors hover:bg-white hover:text-[#06317F] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0CC0DF]"
+                  >
+                    <ChevronLeft className="size-5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={goToNext}
+                    aria-label="Berita berikutnya"
+                    className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-white/25 bg-[#06317F]/75 text-white transition-colors hover:bg-white hover:text-[#06317F] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0CC0DF]"
+                  >
+                    <ChevronRight className="size-5" />
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-        </AnimatedGroup>
-
-        {/* Hero Images Section */}
-        <div className="relative w-full mx-auto z-20">
-          <div className="relative">
-            {/* Desktop Screenshot */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="relative w-full rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 shadow-xl dark:bg-gray-900"
-            >
-              <Image
-                src="https://cdn.21st.dev/assets/localized/fc3ccc2cd42f9a07d120f454efdd2c2ecf95bc252f30ee0abc007ae8c22665f9.png"
-                alt="Desktop Dashboard"
-                width={800}
-                height={800}
-                className="object-cover object-left w-full h-auto"
-                priority
-              />
-            </motion.div>
-          </div>
-
-          {/* Fade Overlay for both images */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="absolute -bottom-2 left-0 right-0 h-50 md:h-60 lg:h-80 bg-gradient-to-t from-white via-white/80 dark:from-black dark:via-black/80 to-transparent z-30 pointer-events-none rounded-md"
-          />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
