@@ -9,7 +9,7 @@ import {
   formatNewsDate,
   getNewsBySlug,
   getRelatedNews,
-} from "@/components/landing/news/news-data";
+} from "@/data/news-data";
 
 interface NewsDetailPageProps {
   params: Promise<{ slug: string }>;

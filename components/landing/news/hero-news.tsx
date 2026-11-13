@@ -5,11 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, Calendar, ChevronLeft, ChevronRight } from "lucide-react";
-import {
-  formatNewsDate,
-  getLatestNews,
-  type NewsItem,
-} from "@/components/landing/news/news-data";
+import { formatNewsDate, getLatestNews, type NewsItem } from "@/data/news-data";
 
 interface HeroNewsProps {
   items?: NewsItem[];
@@ -56,7 +52,7 @@ export default function HeroNews({ items }: HeroNewsProps) {
       onKeyDown={handleKeyDown}
       className="relative w-full overflow-hidden pt-24 pb-10 text-white focus:outline-none md:pt-28 md:pb-14"
     >
-    <div className="absolute inset-0 z-0 bg-[radial-gradient(125%_125%_at_50%_10%,#fff_40%,var(--color-primary)_100%)] dark:bg-[radial-gradient(125%_125%_at_50%_10%,#000_40%,var(--color-primary)_100%)]" />
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(125%_125%_at_50%_10%,#fff_40%,var(--color-primary)_100%)] dark:bg-[radial-gradient(125%_125%_at_50%_10%,#000_40%,var(--color-primary)_100%)]" />
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-[#0C0C0C] shadow-sm">
           <div className="relative min-h-[470px] sm:min-h-[500px] lg:min-h-[540px]">

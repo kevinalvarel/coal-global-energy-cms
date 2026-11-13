@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import HeroNews from "@/components/landing/news/hero-news";
 import NewsGridSection from "@/components/landing/news/news-grid-section";
-import { DUMMY_NEWS, getLatestNews } from "@/components/landing/news/news-data";
+import { DUMMY_NEWS, getLatestNews } from "@/data/news-data";
 
 export const metadata: Metadata = {
   title: "Berita & Informasi | PT. Coal Global Energy",

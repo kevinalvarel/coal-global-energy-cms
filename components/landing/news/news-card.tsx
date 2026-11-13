@@ -1,10 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Calendar } from "lucide-react";
-import {
-  formatNewsDate,
-  type NewsItem,
-} from "@/components/landing/news/news-data";
+import { formatNewsDate, type NewsItem } from "@/data/news-data";
 
 interface NewsCardProps {
   item: NewsItem;
@@ -85,4 +82,3 @@ export default function NewsCard({
     </article>
   );
 }
-

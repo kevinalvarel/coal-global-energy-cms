@@ -22,10 +22,8 @@ export default function HeroSection() {
 
   return (
     <div className=" relative w-full min-h-screen [--color-primary:#003AF9] overflow-hidden py-16 rounded-b-4xl">
-      {/* Radial Gradient Background */}
       <div className="absolute inset-0 z-0 bg-[radial-gradient(125%_125%_at_50%_10%,#fff_40%,var(--color-primary)_100%)] dark:bg-[radial-gradient(125%_125%_at_50%_10%,#000_40%,var(--color-primary)_100%)]" />
 
-      {/* Hero Content */}
       <div className="flex flex-col items-center justify-start text-center pt-20 md:pt-10 px-4 pb-0 max-w-7xl mx-auto z-10 relative rounded-none">
         <AnimatedGroup
           className="max-w-4xl mx-auto text-center flex flex-col items-center"

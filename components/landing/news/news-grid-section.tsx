@@ -6,7 +6,7 @@ import {
   type PostCategory,
 } from "@/validations/content-validations";
 import NewsCard from "@/components/landing/news/news-card";
-import { type NewsItem } from "@/components/landing/news/news-data";
+import { type NewsItem } from "@/data/news-data";
 
 type CategoryFilter = "Semua" | PostCategory;
 
