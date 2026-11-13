@@ -70,7 +70,11 @@ export const contentSlugSchema = z
   .min(1, { error: "Slug konten wajib diisi" })
   .max(220, { error: "Slug maksimal 220 karakter" });
 
+export const updateContentSchema = createContentSchema;
+
 export type CreateContentInput = z.input<typeof createContentSchema>;
+export type CreateContentOutput = z.output<typeof createContentSchema>;
+export type UpdateContentInput = z.input<typeof updateContentSchema>;
 export type GetContentsQuery = z.input<typeof getContentsQuerySchema>;
 export type GetPublishedContentsQuery = z.input<
   typeof getPublishedContentsQuerySchema

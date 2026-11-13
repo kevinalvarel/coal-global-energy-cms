@@ -1,8 +1,12 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { PlusIcon } from "lucide-react";
 
 import { PageHeader } from "@/components/admin/page-header";
-import { PostsTable } from "@/components/admin/posts-table";
+import {
+  PostsTableSection,
+  PostsTableSkeleton,
+} from "@/components/admin/posts-table-section";
 import { Button } from "@/components/ui/button";
 
 export default function SemuaPostinganPage() {
@@ -20,7 +24,9 @@ export default function SemuaPostinganPage() {
           Buat Postingan
         </Button>
       </PageHeader>
-      <PostsTable />
+      <Suspense fallback={<PostsTableSkeleton />}>
+        <PostsTableSection />
+      </Suspense>
     </div>
   );
 }

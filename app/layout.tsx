@@ -5,6 +5,7 @@ import { Inter, Noto_Serif, Averia_Serif_Libre } from "next/font/google";
 import "./globals.css";
 import { NavbarLanding } from "@/components/layouts/NavbarLanding";
 import { Footer } from "@/components/layouts/Footer";
+import { Toaster } from "@/components/ui/sonner";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -30,8 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fontSans.variable} ${fontSerif.variable}antialiased`}>
+      <body className={`${fontSans.variable} ${fontSerif.variable} antialiased`}>
         {children}
+        <Toaster richColors position="top-right" />
       </body>
     </html>
   );

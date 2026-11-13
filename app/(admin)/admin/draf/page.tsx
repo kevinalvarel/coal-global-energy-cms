@@ -1,5 +1,10 @@
+import { Suspense } from "react";
+
 import { PageHeader } from "@/components/admin/page-header";
-import { PostsTable } from "@/components/admin/posts-table";
+import {
+  PostsTableSection,
+  PostsTableSkeleton,
+} from "@/components/admin/posts-table-section";
 
 export default function DrafPage() {
   return (
@@ -8,7 +13,9 @@ export default function DrafPage() {
         title="Draf"
         description="Postingan yang belum dipublikasikan."
       />
-      <PostsTable status="Draf" />
+      <Suspense fallback={<PostsTableSkeleton />}>
+        <PostsTableSection status="Draf" />
+      </Suspense>
     </div>
   );
 }

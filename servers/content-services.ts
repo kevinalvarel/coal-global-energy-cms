@@ -1,6 +1,6 @@
 'use server'
 
-import { and, count, desc, eq, ilike, or, type SQL } from "drizzle-orm";
+import { and, count, desc, eq, ilike, ne, or, type SQL } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { db } from "@/drizzle";
@@ -13,11 +13,13 @@ import {
   createContentSchema,
   getContentsQuerySchema,
   getPublishedContentsQuerySchema,
+  updateContentSchema,
   type CreateContentInput,
   type GetContentsQuery,
   type GetPublishedContentsQuery,
   type PostCategory,
   type PostStatus,
+  type UpdateContentInput,
 } from "@/validations/content-validations";
 
 export type ActionResult<T> =
@@ -117,15 +119,55 @@ async function requireAuthSession() {
   return session?.user ? session : null;
 }
 
-function revalidateContentPaths(slug?: string) {
+function revalidateContentPaths(options?: {
+  slugs?: Array<string | undefined>;
+  editId?: string;
+}) {
   revalidatePath("/admin");
   revalidatePath("/admin/semua-postingan");
   revalidatePath("/admin/draf");
   revalidatePath("/admin/terjadwalkan");
   revalidatePath("/news");
-  if (slug) {
-    revalidatePath(`/news/${slug}`);
+
+  for (const slug of options?.slugs ?? []) {
+    if (slug) {
+      revalidatePath(`/news/${slug}`);
+    }
   }
+  if (options?.editId) {
+    revalidatePath(`/admin/semua-postingan/${options.editId}/edit`);
+  }
+}
+
+function buildCopyTitle(originalTitle: string): string {
+  const suffix = " (Salinan)";
+  const trimmed = originalTitle.trim();
+  if (trimmed.length + suffix.length <= 200) {
+    return `${trimmed}${suffix}`;
+  }
+  return `${trimmed.slice(0, 200 - suffix.length).trimEnd()}${suffix}`;
+}
+
+async function resolveUniqueCopySlug(baseSlug: string): Promise<string> {
+  const normalizedBase = baseSlug.replace(/-+$/, "");
+  for (let attempt = 1; attempt <= 50; attempt += 1) {
+    const suffix = attempt === 1 ? "-salinan" : `-salinan-${attempt}`;
+    const maxPrefixLen = 220 - suffix.length;
+    const prefix = normalizedBase.slice(0, maxPrefixLen).replace(/-+$/, "");
+    const candidate = `${prefix || "postingan"}${suffix}`;
+
+    const existing = await db
+      .select({ id: post.id })
+      .from(post)
+      .where(eq(post.slug, candidate))
+      .limit(1);
+
+    if (existing.length === 0) {
+      return candidate;
+    }
+  }
+
+  return `${normalizedBase.slice(0, 180)}-${crypto.randomUUID().slice(0, 8)}`;
 }
 
 async function fetchContentList(filters: {
@@ -314,9 +356,9 @@ export async function createContent(
       return { success: false, error: "Gagal menyimpan konten" };
     }
 
-    revalidateContentPaths(
-      inserted.status === "Publikasi" ? inserted.slug : undefined,
-    );
+    revalidateContentPaths({
+      slugs: inserted.status === "Publikasi" ? [inserted.slug] : undefined,
+    });
 
     return {
       success: true,
@@ -435,5 +477,242 @@ export async function getPublishedContentBySlug(
   }
 
   return { success: true, data: item };
+}
+
+export async function updateContent(
+  id: string,
+  input: UpdateContentInput,
+): Promise<ActionResult<ContentDetail>> {
+  const session = await requireAuthSession();
+  if (!session) {
+    return {
+      success: false,
+      error: "Anda harus login untuk memperbarui konten",
+    };
+  }
+
+  const parsedId = contentIdSchema.safeParse(id);
+  if (!parsedId.success) {
+    return {
+      success: false,
+      error: parsedId.error.issues[0]?.message ?? "ID konten tidak valid",
+    };
+  }
+
+  const parsedInput = updateContentSchema.safeParse(input);
+  if (!parsedInput.success) {
+    return {
+      success: false,
+      error: parsedInput.error.issues[0]?.message ?? "Input konten tidak valid",
+    };
+  }
+
+  const [existing] = await db
+    .select({
+      id: post.id,
+      slug: post.slug,
+      status: post.status,
+    })
+    .from(post)
+    .where(eq(post.id, parsedId.data))
+    .limit(1);
+
+  if (!existing) {
+    return { success: false, error: "Konten tidak ditemukan" };
+  }
+
+  const resolvedSlug =
+    parsedInput.data.slug ?? slugifyTitle(parsedInput.data.title);
+  if (!resolvedSlug) {
+    return {
+      success: false,
+      error: "Slug gagal dibuat dari judul, silakan isi slug secara manual",
+    };
+  }
+
+  const duplicateSlug = await db
+    .select({ id: post.id })
+    .from(post)
+    .where(and(eq(post.slug, resolvedSlug), ne(post.id, parsedId.data)))
+    .limit(1);
+
+  if (duplicateSlug.length > 0) {
+    return {
+      success: false,
+      error: "Slug sudah digunakan, silakan gunakan slug lain",
+    };
+  }
+
+  try {
+    const [updated] = await db
+      .update(post)
+      .set({
+        title: parsedInput.data.title,
+        slug: resolvedSlug,
+        category: parsedInput.data.category,
+        status: parsedInput.data.status,
+        excerpt: parsedInput.data.excerpt,
+        content: parsedInput.data.content,
+      })
+      .where(eq(post.id, parsedId.data))
+      .returning({ id: post.id, slug: post.slug, status: post.status });
+
+    if (!updated) {
+      return { success: false, error: "Gagal memperbarui konten" };
+    }
+
+    const detail = await fetchContentDetail(eq(post.id, updated.id));
+    if (!detail) {
+      return { success: false, error: "Gagal memuat konten setelah diperbarui" };
+    }
+
+    revalidateContentPaths({
+      slugs: [
+        existing.status === "Publikasi" ? existing.slug : undefined,
+        updated.status === "Publikasi" ? updated.slug : undefined,
+      ],
+      editId: updated.id,
+    });
+
+    return { success: true, data: detail };
+  } catch (error) {
+    if (isUniqueConstraintError(error)) {
+      return {
+        success: false,
+        error: "Slug sudah digunakan, silakan gunakan slug lain",
+      };
+    }
+    return {
+      success: false,
+      error: "Terjadi kesalahan saat memperbarui konten",
+    };
+  }
+}
+
+export async function deleteContent(
+  id: string,
+): Promise<ActionResult<{ id: string }>> {
+  const session = await requireAuthSession();
+  if (!session) {
+    return {
+      success: false,
+      error: "Anda harus login untuk menghapus konten",
+    };
+  }
+
+  const parsedId = contentIdSchema.safeParse(id);
+  if (!parsedId.success) {
+    return {
+      success: false,
+      error: parsedId.error.issues[0]?.message ?? "ID konten tidak valid",
+    };
+  }
+
+  try {
+    const [deleted] = await db
+      .delete(post)
+      .where(eq(post.id, parsedId.data))
+      .returning({ id: post.id, slug: post.slug, status: post.status });
+
+    if (!deleted) {
+      return { success: false, error: "Konten tidak ditemukan" };
+    }
+
+    revalidateContentPaths({
+      slugs: deleted.status === "Publikasi" ? [deleted.slug] : undefined,
+      editId: deleted.id,
+    });
+
+    return { success: true, data: { id: deleted.id } };
+  } catch {
+    return {
+      success: false,
+      error: "Terjadi kesalahan saat menghapus konten",
+    };
+  }
+}
+
+export async function duplicateContent(
+  id: string,
+): Promise<ActionResult<ContentDetail>> {
+  const session = await requireAuthSession();
+  if (!session) {
+    return {
+      success: false,
+      error: "Anda harus login untuk menduplikasi konten",
+    };
+  }
+
+  const parsedId = contentIdSchema.safeParse(id);
+  if (!parsedId.success) {
+    return {
+      success: false,
+      error: parsedId.error.issues[0]?.message ?? "ID konten tidak valid",
+    };
+  }
+
+  const [existing] = await db
+    .select()
+    .from(post)
+    .where(eq(post.id, parsedId.data))
+    .limit(1);
+
+  if (!existing) {
+    return { success: false, error: "Konten tidak ditemukan" };
+  }
+
+  try {
+    const copyTitle = buildCopyTitle(existing.title);
+    const copySlug = await resolveUniqueCopySlug(existing.slug);
+
+    const [inserted] = await db
+      .insert(post)
+      .values({
+        title: copyTitle,
+        slug: copySlug,
+        category: existing.category,
+        status: "Draf",
+        excerpt: existing.excerpt,
+        content: existing.content,
+        authorId: session.user.id,
+      })
+      .returning();
+
+    if (!inserted) {
+      return { success: false, error: "Gagal menduplikasi konten" };
+    }
+
+    revalidateContentPaths();
+
+    return {
+      success: true,
+      data: {
+        id: inserted.id,
+        title: inserted.title,
+        slug: inserted.slug,
+        category: inserted.category,
+        status: inserted.status,
+        excerpt: inserted.excerpt,
+        content: inserted.content,
+        author: {
+          id: session.user.id,
+          name: session.user.name,
+        },
+        createdAt: inserted.createdAt,
+        updatedAt: inserted.updatedAt,
+      },
+    };
+  } catch (error) {
+    if (isUniqueConstraintError(error)) {
+      return {
+        success: false,
+        error: "Gagal membuat slug unik untuk salinan konten, coba lagi",
+      };
+    }
+    return {
+      success: false,
+      error: "Terjadi kesalahan saat menduplikasi konten",
+    };
+  }
 }
 

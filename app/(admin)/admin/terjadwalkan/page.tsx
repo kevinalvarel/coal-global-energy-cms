@@ -1,5 +1,10 @@
+import { Suspense } from "react";
+
 import { PageHeader } from "@/components/admin/page-header";
-import { PostsTable } from "@/components/admin/posts-table";
+import {
+  PostsTableSection,
+  PostsTableSkeleton,
+} from "@/components/admin/posts-table-section";
 
 export default function TerjadwalkanPage() {
   return (
@@ -8,7 +13,9 @@ export default function TerjadwalkanPage() {
         title="Terjadwalkan"
         description="Postingan yang dijadwalkan terbit otomatis."
       />
-      <PostsTable status="Terjadwal" />
+      <Suspense fallback={<PostsTableSkeleton />}>
+        <PostsTableSection status="Terjadwal" />
+      </Suspense>
     </div>
   );
 }
