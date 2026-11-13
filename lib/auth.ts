@@ -9,6 +9,9 @@ export const auth = betterAuth({
     provider: "pg",
     schema: schema,
   }),
+  emailAndPassword: {
+    enabled: true,
+  },
   trustedOrigins: ["localhost:3000"],
   plugins: [nextCookies()],
 });

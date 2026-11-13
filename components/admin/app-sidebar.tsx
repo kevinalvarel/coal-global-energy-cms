@@ -1,6 +1,18 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
+import {
+  ChartBarIcon,
+  Clock,
+  FolderIcon,
+  LayoutDashboardIcon,
+  ListIcon,
+  Pencil,
+  SearchIcon,
+  Settings2Icon,
+  UsersIcon,
+} from "lucide-react";
 
 import { NavContents } from "@/components/admin/nav-documents";
 import { NavMain } from "@/components/admin/nav-main";
@@ -15,25 +27,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import {
-  LayoutDashboardIcon,
-  ListIcon,
-  ChartBarIcon,
-  FolderIcon,
-  UsersIcon,
-  Settings2Icon,
-  SearchIcon,
-  Clock,
-  Pencil,
-  FileText,
-} from "lucide-react";
-import Image from "next/image";
+import { useSession } from "@/lib/auth-client";
 
-const data = {
-  user: {
-    name: "nanti giganti",
-    email: "wowobimjikersamtu@gmail.com ",
-  },
+const navData = {
   navMain: [
     {
       title: "Dashboard",
@@ -86,7 +82,21 @@ const data = {
     },
   ],
 };
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { data: sessionData } = useSession();
+
+  const user = sessionData?.user
+    ? {
+        name: sessionData.user.name,
+        email: sessionData.user.email,
+        avatar: sessionData.user.image ?? undefined,
+      }
+    : {
+        name: "Admin CGE",
+        email: "admin@cge.com",
+      };
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -108,12 +118,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavContents items={data.NavContent} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        <NavMain items={navData.navMain} />
+        <NavContents items={navData.NavContent} />
+        <NavSecondary items={navData.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user} />
       </SidebarFooter>
     </Sidebar>
   );
