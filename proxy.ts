@@ -71,7 +71,9 @@ export async function proxy(request: NextRequest) {
   if (isTargetAdmin) {
     const pathname = request.nextUrl.pathname;
 
-    if (pathname === "/auth/login") {
+    // Keep auth endpoints and the login page out of the /admin rewrite: the
+    // client session check would 404 and login redirects can land on this host.
+    if (pathname === "/auth/login" || pathname.startsWith("/api/auth")) {
       return NextResponse.next();
     }
 
