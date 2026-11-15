@@ -1,17 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { ArrowLeft, ArrowRight, Calendar } from "lucide-react";
-import { getPublishedContentBySlug, getPublishedContents } from "@/servers/content-services";
+import {
+  getPublishedContentBySlug,
+  getPublishedContents,
+} from "@/servers/content-services";
 import { formatNewsDate } from "@/data/news-data";
 import NewsCard from "@/components/landing/news/news-card";
+import NewsDetailSkeleton from "@/components/landing/news/news-detail-skeleton";
 import type { PublishedPost } from "@/lib/news-query";
 
 interface NewsDetailPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: NewsDetailPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: NewsDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
   const result = await getPublishedContentBySlug(slug);
 
@@ -25,7 +32,7 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
   };
 }
 
-export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
+async function NewsDetailContent({ params }: NewsDetailPageProps) {
   const { slug } = await params;
   const result = await getPublishedContentBySlug(slug);
 
@@ -35,7 +42,6 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
 
   const article = result.data;
 
-  // Get related articles (same category, different slug, limit 3 then filter)
   const relatedResult = await getPublishedContents({ limit: 3 });
   const relatedArticles: PublishedPost[] = relatedResult.success
     ? relatedResult.data.items
@@ -54,52 +60,52 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
   const publishedDate = article.createdAt.toISOString().slice(0, 10);
 
   return (
-    <main className="min-h-screen bg-[#E5EAF0]/40 pt-28 pb-16 dark:bg-neutral-950">
-      <article className="mx-auto max-w-4xl px-4 md:px-6">
-        <Link
-          href="/news"
-          className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#103984] transition-colors hover:text-[#06317F] dark:text-[#0CC0DF] dark:hover:text-white"
-        >
-          <ArrowLeft className="size-4" />
-          Kembali ke Halaman Berita
-        </Link>
+    <article className="mx-auto max-w-4xl px-4 md:px-6">
+      <Link
+        href="/news"
+        className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#103984] transition-colors hover:text-[#06317F] dark:text-[#0CC0DF] dark:hover:text-white"
+      >
+        <ArrowLeft className="size-4" />
+        Kembali ke Halaman Berita
+      </Link>
 
-        <header className="mt-6">
-          <h1 className="text-[32px] leading-[1.15] font-bold tracking-tight text-[#06317F] sm:text-4xl lg:text-[42px] dark:text-white">
-            {article.title}
-          </h1>
+      <header className="mt-6">
+        <h1 className="text-[32px] leading-[1.15] font-bold tracking-tight text-[#06317F] sm:text-4xl lg:text-[42px] dark:text-white">
+          {article.title}
+        </h1>
 
-          <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-            <span className="font-semibold text-[#103984] dark:text-[#0CC0DF]">
-              {article.category}
-            </span>
-            <span aria-hidden="true" className="text-neutral-400">/</span>
-            <time
-              dateTime={publishedDate}
-              className="inline-flex items-center gap-1.5 text-neutral-600 dark:text-neutral-400"
-            >
-              <Calendar className="size-4" />
-              {formatNewsDate(publishedDate)}
-            </time>
-          </div>
-        </header>
-
-        <div className="mt-8 rounded-2xl border border-neutral-200 bg-white p-6 shadow-xs sm:p-10 dark:border-neutral-800 dark:bg-neutral-900">
-          {article.excerpt && (
-            <>
-              <p className="text-base leading-relaxed font-medium text-[#06317F] sm:text-lg dark:text-neutral-100">
-                {article.excerpt}
-              </p>
-              <hr className="my-6 border-neutral-200 dark:border-neutral-800" />
-            </>
-          )}
-
-          <div
-            className="prose prose-neutral max-w-none dark:prose-invert"
-            dangerouslySetInnerHTML={{ __html: article.content }}
-          />
+        <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+          <span className="font-semibold text-[#103984] dark:text-[#0CC0DF]">
+            {article.category}
+          </span>
+          <span aria-hidden="true" className="text-neutral-400">
+            /
+          </span>
+          <time
+            dateTime={publishedDate}
+            className="inline-flex items-center gap-1.5 text-neutral-600 dark:text-neutral-400"
+          >
+            <Calendar className="size-4" />
+            {formatNewsDate(publishedDate)}
+          </time>
         </div>
-      </article>
+      </header>
+
+      <div className="mt-8 rounded-2xl border border-neutral-200 bg-white p-6 shadow-xs sm:p-10 dark:border-neutral-800 dark:bg-neutral-900">
+        {article.excerpt && (
+          <>
+            <p className="text-base leading-relaxed font-medium text-[#06317F] sm:text-lg dark:text-neutral-100">
+              {article.excerpt}
+            </p>
+            <hr className="my-6 border-neutral-200 dark:border-neutral-800" />
+          </>
+        )}
+
+        <div
+          className="prose prose-neutral max-w-none dark:prose-invert"
+          dangerouslySetInnerHTML={{ __html: article.content }}
+        />
+      </div>
 
       {relatedArticles.length > 0 && (
         <section
@@ -129,6 +135,16 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
           </div>
         </section>
       )}
+    </article>
+  );
+}
+
+export default function NewsDetailPage({ params }: NewsDetailPageProps) {
+  return (
+    <main className="min-h-screen bg-[#E5EAF0]/40 pt-28 pb-16 dark:bg-neutral-950">
+      <Suspense fallback={<NewsDetailSkeleton />}>
+        <NewsDetailContent params={params} />
+      </Suspense>
     </main>
   );
 }

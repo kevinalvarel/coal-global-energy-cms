@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import { cacheLife, cacheTag } from "next/cache";
 import { desc, eq } from "drizzle-orm";
 import { db } from "@/drizzle";
 import { post } from "@/db/schemas/content-schema";
 import HeroNews from "@/components/landing/news/hero-news";
 import NewsGridSection from "@/components/landing/news/news-grid-section";
 import { NewsQueryProvider } from "@/components/landing/news/news-query-provider";
+import NewsPageSkeleton from "@/components/landing/news/news-page-skeleton";
 import type { NewsApiResponse, PublishedPost } from "@/app/api/news/route";
 
 export const metadata: Metadata = {
@@ -14,6 +17,10 @@ export const metadata: Metadata = {
 };
 
 async function getInitialNews(): Promise<NewsApiResponse> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag("posts");
+
   const rows = await db
     .select({
       id: post.id,
@@ -36,15 +43,25 @@ async function getInitialNews(): Promise<NewsApiResponse> {
   return { items, total: items.length };
 }
 
-export default async function NewsPage() {
+async function NewsContent() {
   const initialData = await getInitialNews();
   const heroItems = initialData.items.slice(0, 4);
 
   return (
+    <>
+      <HeroNews items={heroItems} />
+      <NewsGridSection initialData={initialData} />
+    </>
+  );
+}
+
+export default function NewsPage() {
+  return (
     <NewsQueryProvider>
       <main className="min-h-screen bg-[#E5EAF0]/40 dark:bg-neutral-950">
-        <HeroNews items={heroItems} />
-        <NewsGridSection initialData={initialData} />
+        <Suspense fallback={<NewsPageSkeleton />}>
+          <NewsContent />
+        </Suspense>
       </main>
     </NewsQueryProvider>
   );
