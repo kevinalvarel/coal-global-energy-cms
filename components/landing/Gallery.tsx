@@ -3,11 +3,11 @@ import AccordionGallery from "@/components/layouts/AccordionGallery";
 const items = [
   {
     image: "/images/landing/gallery/operasional-1.jpeg",
-    label: "Unloading Coal 1",
+    label: "Loading Coal",
   },
   {
     image: "/images/landing/gallery/operasional-2.jpeg",
-    label: "Unloading Coal 2",
+    label: "Unloading Coal",
   },
   {
     image: "/images/landing/gallery/office.jpeg",

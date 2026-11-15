@@ -103,6 +103,15 @@ const AccordionGallery = ({
   const [active, setActive] = useState(
     Math.min(Math.max(defaultIndex, 0), count - 1),
   );
+  const [compact, setCompact] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 640px)");
+    const sync = () => setCompact(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   const prefersReduced =
     typeof window !== "undefined" && window.matchMedia
@@ -257,10 +266,67 @@ const AccordionGallery = ({
     }
   };
 
+  if (compact) {
+    return (
+      <div
+        className={`grid w-full grid-cols-2 gap-3 ${className}`}
+        role="list"
+        aria-label="Image accordion gallery"
+      >
+        {items.map((item, i) => {
+          const Tag = (item.link ? "a" : "div") as "a";
+          return (
+            <Tag
+              key={i}
+              href={item.link || undefined}
+              role="listitem"
+              className={`relative block aspect-[4/3] overflow-hidden bg-[#0a0713] no-underline outline-none focus-visible:[box-shadow:0_0_0_2px_var(--ag-accent)] ${count % 2 === 1 && i === count - 1 ? "col-span-2" : ""}`}
+              style={
+                {
+                  borderRadius: `${radius}px`,
+                  "--ag-accent": accentColor,
+                } as CSSProperties
+              }
+            >
+              <img
+                src={item.image}
+                alt={item.alt || item.label || ""}
+                draggable={false}
+                className="absolute inset-0 h-full w-full select-none object-cover [-webkit-user-drag:none]"
+              />
+              <span
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background: `linear-gradient(180deg, transparent 50%, color-mix(in srgb, ${overlayColor} 80%, transparent) 100%)`,
+                }}
+                aria-hidden="true"
+              />
+              {showLabels && item.label && (
+                <span
+                  className="pointer-events-none absolute inset-x-4 bottom-4 z-[2] flex items-center gap-3"
+                  style={{ color: textColor }}
+                  aria-hidden="true"
+                >
+                  <span
+                    className="h-[22px] w-[3px] flex-none rounded-[3px]"
+                    style={{ background: accentColor }}
+                  />
+                  <span className="text-base font-semibold [text-shadow:0_2px_14px_rgba(0,0,0,0.55)]">
+                    {item.label}
+                  </span>
+                </span>
+              )}
+            </Tag>
+          );
+        })}
+      </div>
+    );
+  }
+
   return (
     <div
       ref={rootRef}
-      className={`flex ${vertical ? "flex-col" : "flex-row"} w-full max-w-full [perspective:1400px] max-[520px]:!flex-col max-[520px]:[perspective:none] ${className}`}
+      className={`flex ${vertical ? "flex-col" : "flex-row"} w-full max-w-full [perspective:1400px] ${className}`}
       style={{
         gap: `${gap}px`,
         height: vertical ? `${Math.round(height * 1.6)}px` : `${height}px`,
@@ -277,7 +343,7 @@ const AccordionGallery = ({
             ref={(el: HTMLElement | null) => {
               panelRefs.current[i] = el;
             }}
-            className="group relative block min-w-0 min-h-0 flex-[1_1_0] cursor-pointer overflow-hidden bg-[#0a0713] no-underline outline-none [transform-style:preserve-3d] [transform-origin:center] [box-shadow:0_10px_30px_-18px_rgba(0,0,0,0.8)] focus-visible:[box-shadow:0_0_0_2px_var(--ag-accent),0_10px_30px_-18px_rgba(0,0,0,0.8)] max-[520px]:min-h-[84px] max-[520px]:!transform-none"
+            className="group relative block min-w-0 min-h-0 flex-[1_1_0] cursor-pointer overflow-hidden bg-[#0a0713] no-underline outline-none [transform-style:preserve-3d] [transform-origin:center] [box-shadow:0_10px_30px_-18px_rgba(0,0,0,0.8)] focus-visible:[box-shadow:0_0_0_2px_var(--ag-accent),0_10px_30px_-18px_rgba(0,0,0,0.8)]"
             style={
               {
                 borderRadius: `${radius}px`,
