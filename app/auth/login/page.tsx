@@ -1,5 +1,3 @@
-import { GalleryVerticalEnd } from "lucide-react";
-
 import { LoginForm } from "@/components/auth/login-form";
 import Image from "next/image";
 
@@ -25,11 +23,21 @@ export default function LoginPage() {
         </div>
       </div>
       <div className="relative hidden bg-muted lg:block">
-        <img
-          src="/placeholder.svg"
-          alt="Image"
-          className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-        />
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(125%_125%_at_50%_10%,#fff_40%,var(--color-primary)_100%)] dark:bg-[radial-gradient(125%_125%_at_50%_10%,#000_40%,var(--color-primary)_100%)]" />
+        <div className="z-10">
+          <Image
+            height={1080}
+            width={1080}
+            src="/images/login.jpeg"
+            alt="Image"
+            className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+          />
+          <div
+            className="absolute inset-0 z-0
+                        bg-[radial-gradient(125%_125%_at_50%_20%,transparent_0%,rgba(255,255,255,0.8)_50%,var(--color-primary)_100%)]
+                        dark:bg-[radial-gradient(125%_125%_at_50%_10%,transparent_0%,rgba(0,0,0,0.8)_40%,var(--color-primary)_100%)]"
+          />
+        </div>
       </div>
     </div>
   );

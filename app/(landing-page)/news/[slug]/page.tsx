@@ -1,62 +1,57 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Calendar } from "lucide-react";
+import { getPublishedContentBySlug, getPublishedContents } from "@/servers/content-services";
+import { formatNewsDate } from "@/data/news-data";
 import NewsCard from "@/components/landing/news/news-card";
-import {
-  DUMMY_NEWS,
-  formatNewsDate,
-  getNewsBySlug,
-  getRelatedNews,
-} from "@/data/news-data";
+import type { PublishedPost } from "@/lib/news-query";
 
 interface NewsDetailPageProps {
   params: Promise<{ slug: string }>;
 }
 
-/**
- * Menghasilkan parameter statis slug berita sementara untuk halaman detail.
- */
-export async function generateStaticParams() {
-  return DUMMY_NEWS.map((item) => ({
-    slug: item.slug,
-  }));
-}
-
-/**
- * Menghasilkan metadata halaman detail berita sesuai slug aktif.
- */
-export async function generateMetadata({
-  params,
-}: NewsDetailPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: NewsDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = getNewsBySlug(slug);
+  const result = await getPublishedContentBySlug(slug);
 
-  if (!article) {
-    return {
-      title: "Berita Tidak Ditemukan | PT. Coal Global Energy",
-    };
+  if (!result.success) {
+    return { title: "Berita Tidak Ditemukan | PT. Coal Global Energy" };
   }
 
   return {
-    title: `${article.title} | PT. Coal Global Energy`,
-    description: article.excerpt,
+    title: `${result.data.title} | PT. Coal Global Energy`,
+    description: result.data.excerpt ?? undefined,
   };
 }
 
-/**
- * Halaman detail artikel/berita berdasarkan slug.
- */
 export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
   const { slug } = await params;
-  const article = getNewsBySlug(slug);
+  const result = await getPublishedContentBySlug(slug);
 
-  if (!article) {
+  if (!result.success) {
     notFound();
   }
 
-  const relatedArticles = getRelatedNews(article.slug, 2);
+  const article = result.data;
+
+  // Get related articles (same category, different slug, limit 3 then filter)
+  const relatedResult = await getPublishedContents({ limit: 3 });
+  const relatedArticles: PublishedPost[] = relatedResult.success
+    ? relatedResult.data.items
+        .filter((item) => item.slug !== slug)
+        .slice(0, 2)
+        .map((item) => ({
+          id: item.id,
+          title: item.title,
+          slug: item.slug,
+          category: item.category,
+          excerpt: item.excerpt,
+          createdAt: item.createdAt.toISOString(),
+        }))
+    : [];
+
+  const publishedDate = article.createdAt.toISOString().slice(0, 10);
 
   return (
     <main className="min-h-screen bg-[#E5EAF0]/40 pt-28 pb-16 dark:bg-neutral-950">
@@ -78,42 +73,31 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
             <span className="font-semibold text-[#103984] dark:text-[#0CC0DF]">
               {article.category}
             </span>
-            <span aria-hidden="true" className="text-neutral-400">
-              /
-            </span>
+            <span aria-hidden="true" className="text-neutral-400">/</span>
             <time
-              dateTime={article.publishedAt}
+              dateTime={publishedDate}
               className="inline-flex items-center gap-1.5 text-neutral-600 dark:text-neutral-400"
             >
               <Calendar className="size-4" />
-              {formatNewsDate(article.publishedAt)}
+              {formatNewsDate(publishedDate)}
             </time>
           </div>
         </header>
 
-        <div className="relative mt-8 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-neutral-200 bg-[#E5EAF0] dark:border-neutral-800 dark:bg-neutral-900">
-          <Image
-            src={article.imageUrl}
-            alt={article.imageAlt}
-            fill
-            priority
-            sizes="(max-width: 896px) 100vw, 896px"
-            className="object-cover"
-          />
-        </div>
-
         <div className="mt-8 rounded-2xl border border-neutral-200 bg-white p-6 shadow-xs sm:p-10 dark:border-neutral-800 dark:bg-neutral-900">
-          <p className="text-base leading-relaxed font-medium text-[#06317F] sm:text-lg dark:text-neutral-100">
-            {article.excerpt}
-          </p>
+          {article.excerpt && (
+            <>
+              <p className="text-base leading-relaxed font-medium text-[#06317F] sm:text-lg dark:text-neutral-100">
+                {article.excerpt}
+              </p>
+              <hr className="my-6 border-neutral-200 dark:border-neutral-800" />
+            </>
+          )}
 
-          <hr className="my-6 border-neutral-200 dark:border-neutral-800" />
-
-          <div className="space-y-5 text-base leading-relaxed text-[#0C0C0C]/90 dark:text-neutral-300">
-            {article.content.map((paragraph, index) => (
-              <p key={`${article.slug}-p-${index}`}>{paragraph}</p>
-            ))}
-          </div>
+          <div
+            className="prose prose-neutral max-w-none dark:prose-invert"
+            dangerouslySetInnerHTML={{ __html: article.content }}
+          />
         </div>
       </article>
 
@@ -140,12 +124,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
 
           <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
             {relatedArticles.map((item) => (
-              <NewsCard
-                key={item.slug}
-                item={item}
-                showExcerpt={false}
-                sizes="(max-width: 768px) 100vw, 440px"
-              />
+              <NewsCard key={item.slug} item={item} showExcerpt={false} />
             ))}
           </div>
         </section>

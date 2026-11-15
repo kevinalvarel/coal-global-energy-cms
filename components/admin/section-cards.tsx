@@ -1,5 +1,3 @@
-"use client";
-
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -9,47 +7,76 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  CalendarClockIcon,
-  ClockIcon,
-  FileTextIcon,
-  NewspaperIcon,
-} from "lucide-react";
+import { getTotalVisitors } from "@/lib/ga4";
+import { getDashboardStats } from "@/servers/dashboard-queries";
+import { FileTextIcon, NewspaperIcon, UsersIcon } from "lucide-react";
 
-export function SectionCards() {
+export async function SectionCards() {
+  const [stats, totalVisitors] = await Promise.all([
+    getDashboardStats(),
+    getTotalVisitors(30),
+  ]);
+
   return (
     <div className="grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-linear-to-t *:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-3 dark:*:data-[slot=card]:bg-card">
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription>Total Postingan</CardDescription>
+          <CardDescription>Total Pengunjung</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            128
+            {totalVisitors !== null
+              ? totalVisitors.toLocaleString("id-ID")
+              : "—"}
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
-              <NewspaperIcon />
-              +12 bulan ini
+              <UsersIcon />
+              30 hari terakhir
             </Badge>
           </CardAction>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
-            Publikasi rutin berjalan
+            {totalVisitors !== null
+              ? "Data dari Google Analytics"
+              : "GA4 belum dikonfigurasi"}
+          </div>
+          <div className="text-muted-foreground">
+            Pengguna aktif unik di website
+          </div>
+        </CardFooter>
+      </Card>
+      <Card className="@container/card">
+        <CardHeader>
+          <CardDescription>Total Postingan</CardDescription>
+          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+            {stats.totalPosts.toLocaleString("id-ID")}
+          </CardTitle>
+          <CardAction>
+            <Badge variant="outline">
+              <NewspaperIcon />
+              semua status
+            </Badge>
+          </CardAction>
+        </CardHeader>
+        <CardFooter className="flex-col items-start gap-1.5 text-sm">
+          <div className="line-clamp-1 flex gap-2 font-medium">
+            Seluruh konten tersimpan
           </div>
           <div className="text-muted-foreground">
             Artikel, berita, dan informasi perusahaan
           </div>
         </CardFooter>
       </Card>
-      <Card className="@container/card">
+      <Card className="@container/card col-span-2 md:col-span-1">
         <CardHeader>
-          <CardDescription>Draf</CardDescription>
+          <CardDescription>Total Draf</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            6
+            {stats.totalDraft.toLocaleString("id-ID")}
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
-              <ClockIcon />6 perlu ditinjau
+              <FileTextIcon />
+              {stats.totalDraft === 1 ? "1 draf" : `${stats.totalDraft} draf`}
             </Badge>
           </CardAction>
         </CardHeader>
@@ -59,27 +86,6 @@ export function SectionCards() {
           </div>
           <div className="text-muted-foreground">
             Belum tampil di halaman publik
-          </div>
-        </CardFooter>
-      </Card>
-      <Card className="@container/card col-span-2 md:col-span-1">
-        <CardHeader>
-          <CardDescription>Terjadwalkan</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            3
-          </CardTitle>
-          <CardAction>
-            <Badge variant="outline">
-              <CalendarClockIcon />3 minggu ini
-            </Badge>
-          </CardAction>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">
-            Jadwal terbit otomatis
-          </div>
-          <div className="text-muted-foreground">
-            Postingan terbit sesuai jadwal
           </div>
         </CardFooter>
       </Card>

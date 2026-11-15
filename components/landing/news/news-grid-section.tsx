@@ -1,29 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import {
-  POST_CATEGORIES,
-  type PostCategory,
-} from "@/validations/content-validations";
+import { useQuery } from "@tanstack/react-query";
+import { POST_CATEGORIES, type PostCategory } from "@/validations/content-validations";
+import { newsQueryOptions, type PublishedPost } from "@/lib/news-query";
 import NewsCard from "@/components/landing/news/news-card";
-import { type NewsItem } from "@/data/news-data";
+import type { NewsApiResponse } from "@/app/api/news/route";
 
 type CategoryFilter = "Semua" | PostCategory;
-
 const FILTER_OPTIONS: CategoryFilter[] = ["Semua", ...POST_CATEGORIES];
 
 interface NewsGridSectionProps {
-  items: NewsItem[];
+  initialData?: NewsApiResponse;
 }
 
-export default function NewsGridSection({ items }: NewsGridSectionProps) {
-  const [selectedCategory, setSelectedCategory] =
-    useState<CategoryFilter>("Semua");
+export default function NewsGridSection({ initialData }: NewsGridSectionProps) {
+  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("Semua");
+
+  const { data, isLoading, isError } = useQuery({
+    ...newsQueryOptions(),
+    initialData,
+  });
+
+  const allItems: PublishedPost[] = data?.items ?? [];
 
   const filteredItems =
     selectedCategory === "Semua"
-      ? items
-      : items.filter((item) => item.category === selectedCategory);
+      ? allItems
+      : allItems.filter((item) => item.category === selectedCategory);
 
   return (
     <section
@@ -48,7 +52,7 @@ export default function NewsGridSection({ items }: NewsGridSectionProps) {
           aria-live="polite"
           className="text-sm font-medium text-neutral-600 dark:text-neutral-400"
         >
-          Menampilkan {filteredItems.length} publikasi
+          {isLoading ? "Memuat..." : `Menampilkan ${filteredItems.length} publikasi`}
         </p>
       </div>
 
@@ -77,14 +81,28 @@ export default function NewsGridSection({ items }: NewsGridSectionProps) {
         })}
       </div>
 
-      {filteredItems.length === 0 ? (
+      {isError ? (
+        <div className="mt-10 rounded-xl border border-red-200 bg-red-50 px-6 py-12 text-center dark:border-red-900 dark:bg-red-950/30">
+          <p className="text-base font-medium text-red-700 dark:text-red-400">
+            Gagal memuat berita. Silakan muat ulang halaman.
+          </p>
+        </div>
+      ) : isLoading ? (
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div
+              key={i}
+              className="h-72 animate-pulse rounded-xl border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900"
+            />
+          ))}
+        </div>
+      ) : filteredItems.length === 0 ? (
         <div className="mt-10 rounded-xl border border-neutral-200 bg-white px-6 py-12 text-center dark:border-neutral-800 dark:bg-neutral-900">
           <p className="text-base font-medium text-[#0C0C0C] dark:text-white">
             Belum ada publikasi pada kategori {selectedCategory}.
           </p>
           <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
-            Pilih kategori lain atau tampilkan seluruh daftar berita yang
-            tersedia.
+            Pilih kategori lain atau tampilkan seluruh daftar berita yang tersedia.
           </p>
           <button
             type="button"

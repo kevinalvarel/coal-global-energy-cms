@@ -1,18 +1,18 @@
 "use client";
 
 import { useState, type KeyboardEvent } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, Calendar, ChevronLeft, ChevronRight } from "lucide-react";
-import { formatNewsDate, getLatestNews, type NewsItem } from "@/data/news-data";
+import { formatNewsDate } from "@/data/news-data";
+import type { PublishedPost } from "@/lib/news-query";
 
 interface HeroNewsProps {
-  items?: NewsItem[];
+  items?: PublishedPost[];
 }
 
 export default function HeroNews({ items }: HeroNewsProps) {
-  const slides = items && items.length > 0 ? items : getLatestNews(4);
+  const slides = items && items.length > 0 ? items : [];
   const [activeIndex, setActiveIndex] = useState(0);
   const prefersReducedMotion = useReducedMotion();
 
@@ -68,14 +68,7 @@ export default function HeroNews({ items }: HeroNewsProps) {
                 }}
                 className="absolute inset-0"
               >
-                <Image
-                  src={activeSlide.imageUrl}
-                  alt={activeSlide.imageAlt}
-                  fill
-                  priority={safeIndex === 0}
-                  sizes="(max-width: 1280px) 100vw, 1280px"
-                  className="object-cover"
-                />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#06317F]/90 via-[#103984]/80 to-[#0CC0DF]/40" />
                 <div
                   aria-hidden="true"
                   className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C]/95 via-[#06317F]/85 to-[#06317F]/40 lg:bg-gradient-to-r lg:from-[#06317F]/95 lg:via-[#06317F]/80 lg:to-[#0C0C0C]/35"
@@ -113,17 +106,19 @@ export default function HeroNews({ items }: HeroNewsProps) {
                         /
                       </span>
                       <time
-                        dateTime={activeSlide.publishedAt}
+                        dateTime={activeSlide.createdAt.slice(0, 10)}
                         className="inline-flex items-center gap-1.5 text-[#E5EAF0]/90"
                       >
                         <Calendar className="size-3.5 text-[#0CC0DF]" />
-                        {formatNewsDate(activeSlide.publishedAt)}
+                        {formatNewsDate(activeSlide.createdAt.slice(0, 10))}
                       </time>
                     </div>
 
-                    <p className="mt-4 text-sm leading-relaxed text-[#E5EAF0]/90 sm:text-base">
-                      {activeSlide.excerpt}
-                    </p>
+                    {activeSlide.excerpt && (
+                      <p className="mt-4 text-sm leading-relaxed text-[#E5EAF0]/90 sm:text-base">
+                        {activeSlide.excerpt}
+                      </p>
+                    )}
 
                     <div className="mt-6">
                       <Link

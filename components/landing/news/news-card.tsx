@@ -1,54 +1,40 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Calendar } from "lucide-react";
-import { formatNewsDate, type NewsItem } from "@/data/news-data";
+import { formatNewsDate } from "@/data/news-data";
+import type { PublishedPost } from "@/lib/news-query";
 
 interface NewsCardProps {
-  item: NewsItem;
+  item: PublishedPost;
   showExcerpt?: boolean;
   sizes?: string;
 }
 
-/**
- * Kartu berita reusable untuk daftar publikasi dan bagian berita terkait.
- */
 export default function NewsCard({
   item,
   showExcerpt = true,
-  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
 }: NewsCardProps) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xs transition-colors hover:border-[#103984]/40 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
-      <Link
-        href={`/news/${item.slug}`}
-        className="relative block aspect-[16/10] w-full overflow-hidden bg-[#E5EAF0] dark:bg-neutral-800"
-      >
-        <Image
-          src={item.imageUrl}
-          alt={item.imageAlt}
-          fill
-          sizes={sizes}
-          className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-        />
-      </Link>
+      <div className="relative flex aspect-[16/10] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-[#103984]/10 to-[#0CC0DF]/10 dark:from-[#103984]/20 dark:to-[#0CC0DF]/20">
+        <span className="text-xs font-semibold uppercase tracking-widest text-[#103984]/50 dark:text-[#0CC0DF]/50">
+          {item.category}
+        </span>
+      </div>
 
       <div className="flex flex-1 flex-col p-5">
         <div className="mb-3 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs">
           <span className="font-semibold text-[#103984] dark:text-[#0CC0DF]">
             {item.category}
           </span>
-          <span
-            aria-hidden="true"
-            className="text-neutral-300 dark:text-neutral-600"
-          >
+          <span aria-hidden="true" className="text-neutral-300 dark:text-neutral-600">
             /
           </span>
           <time
-            dateTime={item.publishedAt}
+            dateTime={item.createdAt}
             className="inline-flex items-center gap-1.5 text-neutral-600 dark:text-neutral-400"
           >
             <Calendar className="size-3.5" />
-            {formatNewsDate(item.publishedAt)}
+            {formatNewsDate(item.createdAt.slice(0, 10))}
           </time>
         </div>
 
@@ -61,7 +47,7 @@ export default function NewsCard({
           </Link>
         </h3>
 
-        {showExcerpt ? (
+        {showExcerpt && item.excerpt ? (
           <p className="mt-2.5 flex-1 text-sm leading-relaxed text-neutral-600 line-clamp-3 dark:text-neutral-300">
             {item.excerpt}
           </p>
