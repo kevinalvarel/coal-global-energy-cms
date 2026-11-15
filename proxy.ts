@@ -3,44 +3,87 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 
 const ADMIN_SUBDOMAIN = process.env.ADMIN_SUBDOMAIN ?? "admin";
-const ROOT_DOMAIN = process.env.NEXT_PUBLIC_BASE_URL ?? "localhost:3000";
 
-function getSubdomain(host: string): string | null {
-  const hostname = host.split(":")[0];
+function cleanDomain(input?: string | null): string {
+  if (!input) return "";
+  return input
+    .replace(/^https?:\/\//i, "")
+    .replace(/\/.*$/, "")
+    .trim();
+}
 
-  const parts = hostname.split(".");
+function getRequestInfo(request: NextRequest) {
+  const host =
+    request.headers.get("x-forwarded-host") ??
+    request.headers.get("host") ??
+    "localhost:3000";
 
-  if (parts.length < 2) return null;
+  const rawProto =
+    request.headers.get("x-forwarded-proto") ??
+    request.nextUrl.protocol ??
+    "https";
+  const protocol = rawProto.replace(/:$/, "");
 
-  if (parts[parts.length - 1] === "localhost") {
-    return parts.length >= 2 ? (parts[0] ?? null) : null;
+  return { host, protocol };
+}
+
+function isAdminSubdomain(host: string, subdomainPrefix: string): boolean {
+  const hostname = host.split(":")[0]?.toLowerCase() ?? "";
+
+  if (
+    hostname === subdomainPrefix.toLowerCase() ||
+    hostname.startsWith(`${subdomainPrefix.toLowerCase()}.`)
+  ) {
+    return true;
   }
 
-  if (parts.length >= 3) {
-    return parts[0] ?? null;
+  return false;
+}
+
+function resolveRootHost(host: string, subdomainPrefix: string): string {
+  const prefix = `${subdomainPrefix.toLowerCase()}.`;
+  if (host.toLowerCase().startsWith(prefix)) {
+    return host.slice(prefix.length);
   }
 
-  return null;
+  const envDomain =
+    cleanDomain(process.env.NEXT_PUBLIC_ROOT_DOMAIN) ||
+    cleanDomain(process.env.NEXT_PUBLIC_BASE_URL);
+
+  return envDomain || host;
+}
+
+function resolveAdminHost(host: string, subdomainPrefix: string): string {
+  const cleanHost = host.replace(/^www\./i, "");
+
+  const prefix = `${subdomainPrefix.toLowerCase()}.`;
+  if (cleanHost.toLowerCase().startsWith(prefix)) {
+    return cleanHost;
+  }
+
+  return `${subdomainPrefix}.${cleanHost}`;
 }
 
 export async function proxy(request: NextRequest) {
-  const host = request.headers.get("host") ?? "";
-  const subdomain = getSubdomain(host);
+  const { host, protocol } = getRequestInfo(request);
+  const isTargetAdmin = isAdminSubdomain(host, ADMIN_SUBDOMAIN);
 
-  if (subdomain === ADMIN_SUBDOMAIN) {
+  if (isTargetAdmin) {
+    const pathname = request.nextUrl.pathname;
+
+    if (pathname === "/auth/login") {
+      return NextResponse.next();
+    }
+
     const session = await auth.api.getSession({
       headers: await headers(),
     });
 
     if (!session) {
-      const loginUrl = new URL(
-        "/auth/login",
-        `${request.nextUrl.protocol}//${ROOT_DOMAIN}`,
-      );
+      const rootHost = resolveRootHost(host, ADMIN_SUBDOMAIN);
+      const loginUrl = new URL(`/auth/login`, `${protocol}://${rootHost}`);
       return NextResponse.redirect(loginUrl);
     }
-
-    const pathname = request.nextUrl.pathname;
 
     const targetPath = pathname.startsWith("/admin")
       ? pathname
@@ -48,15 +91,17 @@ export async function proxy(request: NextRequest) {
 
     const rewriteUrl = request.nextUrl.clone();
     rewriteUrl.pathname = targetPath;
-
     return NextResponse.rewrite(rewriteUrl);
   }
 
   if (request.nextUrl.pathname.startsWith("/admin")) {
-    const adminUrl = new URL(
-      request.nextUrl.pathname.replace(/^\/admin/, "") || "/",
-      `${request.nextUrl.protocol}//${ADMIN_SUBDOMAIN}.${ROOT_DOMAIN}`,
-    );
+    const adminHost = resolveAdminHost(host, ADMIN_SUBDOMAIN);
+    const remainingPath =
+      request.nextUrl.pathname.replace(/^\/admin/, "") || "/";
+
+    const adminUrl = new URL(remainingPath, `${protocol}://${adminHost}`);
+    adminUrl.search = request.nextUrl.search;
+
     return NextResponse.redirect(adminUrl);
   }
 

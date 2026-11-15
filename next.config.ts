@@ -1,6 +1,18 @@
 import type { NextConfig } from "next";
 
-const ROOT_DOMAIN = process.env.NEXT_PUBLIC_ROOT_DOMAIN ?? "localhost:3000";
+function cleanDomain(input?: string): string {
+  if (!input) return "";
+  return input
+    .replace(/^https?:\/\//i, "")
+    .replace(/\/.*$/, "")
+    .trim();
+}
+
+const rawRoot =
+  process.env.NEXT_PUBLIC_ROOT_DOMAIN ||
+  process.env.NEXT_PUBLIC_BASE_URL ||
+  "localhost:3000";
+const ROOT_DOMAIN = cleanDomain(rawRoot) || "localhost:3000";
 const ADMIN_SUBDOMAIN = process.env.ADMIN_SUBDOMAIN ?? "admin";
 
 const nextConfig: NextConfig = {
@@ -12,6 +24,7 @@ const nextConfig: NextConfig = {
       allowedOrigins: [
         ROOT_DOMAIN,
         `${ADMIN_SUBDOMAIN}.${ROOT_DOMAIN}`,
+        `*.${ROOT_DOMAIN}`,
       ],
     },
   },
