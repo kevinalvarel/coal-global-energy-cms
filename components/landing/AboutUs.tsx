@@ -53,27 +53,22 @@ export function AboutUs() {
     {
       src: "/icons/kingland.png",
       alt: "Kingland Logo",
-      href: "https://company1.com",
     },
     {
       src: "/icons/pokphand.png",
       alt: "Pokphand Logo",
-      href: "https://company2.com",
     },
     {
       src: "/icons/monokem.png",
       alt: "Monokem Logo",
-      href: "https://company3.com",
     },
     {
       src: "/icons/sge.png",
       alt: "SGE Logo",
-      href: "https://company3.com",
     },
     {
       src: "/icons/xinyuan.png",
       alt: "Monokem Logo",
-      href: "https://company3.com",
     },
   ];
 

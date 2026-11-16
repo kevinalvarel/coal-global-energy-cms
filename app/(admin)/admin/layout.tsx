@@ -1,8 +1,31 @@
+import type { Metadata } from "next";
 import { AppSidebar } from "@/components/admin/app-sidebar";
 import { SiteHeader } from "@/components/admin/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ReactNode } from "react";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Admin Portal | PT Coal Global Energy",
+    template: "%s | Admin Portal - PT Coal Global Energy",
+  },
+  description:
+    "Administrative dashboard and content management system for PT Coal Global Energy.",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "none",
+      "max-snippet": -1,
+    },
+  },
+};
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (

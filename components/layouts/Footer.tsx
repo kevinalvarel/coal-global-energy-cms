@@ -11,7 +11,7 @@ const navItems = [
   { name: "Legal", href: "/legal" },
 ];
 
-const contacts = ["[Email]", "[Telepon]", "[Media Sosial]"];
+const contacts = ["coalglobalenergy@gmail.com", "[Telepon]", "[Media Sosial]"];
 
 export function Footer() {
   return (

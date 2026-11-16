@@ -3,9 +3,14 @@ import HeroServices from "@/components/landing/services/hero-services";
 import { DetailServices } from "@/components/landing/services/detail-services";
 
 export const metadata: Metadata = {
-  title: "Stockpiling Services | PT Coal Global Energy",
+  title: "Stockpile & Maritime Logistics Services",
   description:
-    "Layanan penyimpanan sementara (stockpile) PT. Coal Global Energy di Bojonegara, Banten: bongkar muat, penimbangan, kontrol kualitas, hingga pemuatan untuk distribusi.",
+    "Comprehensive coal stockpiling and port-side logistics services in Bojonegara, Banten: high-capacity storage, loading and unloading, weight verification, and quality preservation.",
+  openGraph: {
+    title: "Stockpile & Maritime Logistics Services | PT Coal Global Energy",
+    description:
+      "Strategic coal stockpiling, port logistics, quality control, and distribution dispatch in Bojonegara, Banten.",
+  },
 };
 
 const WHATSAPP_URL =

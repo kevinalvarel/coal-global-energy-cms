@@ -11,9 +11,14 @@ import NewsPageSkeleton from "@/components/landing/news/news-page-skeleton";
 import type { NewsApiResponse, PublishedPost } from "@/app/api/news/route";
 
 export const metadata: Metadata = {
-  title: "Berita & Informasi | PT. Coal Global Energy",
+  title: "News & Industry Insights",
   description:
-    "Berita operasional terbaru, artikel energi industri, edukasi tata niaga batubara, dan laporan mutu PT. Coal Global Energy.",
+    "Latest operational updates, industrial energy market trends, commodity trading news, and quality reports from PT Coal Global Energy.",
+  openGraph: {
+    title: "News & Industry Insights | PT Coal Global Energy",
+    description:
+      "Stay updated with market trends, coal operations, and industry developments from PT Coal Global Energy.",
+  },
 };
 
 async function getInitialNews(): Promise<NewsApiResponse> {

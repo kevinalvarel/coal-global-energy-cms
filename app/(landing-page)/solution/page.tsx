@@ -4,9 +4,14 @@ import HeroSolutions from "@/components/landing/solutions/hero-solutions";
 import { FaWhatsapp } from "react-icons/fa";
 
 export const metadata: Metadata = {
-  title: "Solusi per Sektor Industri | PT Coal Global Energy",
+  title: "Industry Energy Solutions",
   description:
-    "Solusi pasokan batu bara, cangkang sawit, wood chip, dan batu split untuk pembangkit listrik, manufaktur, biomassa, pulp dan kertas, serta konstruksi, didukung stockpile Bojonegara.",
+    "Tailored coal, biomass, and aggregate supply solutions for power generation, manufacturing, cement, pulp & paper, and heavy infrastructure.",
+  openGraph: {
+    title: "Industry Energy Solutions | PT Coal Global Energy",
+    description:
+      "Tailored energy supply and logistics solutions for major industrial sectors, powered by the Bojonegara stockpile hub.",
+  },
 };
 
 const CONTACT_EMAIL = "pt.coalglobalenergy@gmail.com";

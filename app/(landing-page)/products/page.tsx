@@ -3,12 +3,17 @@ import HeroProducts from "@/components/landing/products/hero-products";
 import { FaWhatsapp } from "react-icons/fa";
 
 export const metadata: Metadata = {
-  title: "Produk & Komoditas | PT Coal Global Energy",
+  title: "Products & Commodities",
   description:
-    "Batu bara, cangkang sawit, wood chip, dan batu split dari PT. Coal Global Energy, didukung fasilitas stockpile di Bojonegara, Banten.",
+    "High-grade thermal coal, palm kernel shells, wood chips, and split stone supplied by PT Coal Global Energy, backed by strategic stockpile facilities in Bojonegara, Banten.",
+  openGraph: {
+    title: "Products & Commodities | PT Coal Global Energy",
+    description:
+      "Reliable supply of thermal coal, biomass fuels, and construction aggregates from Bojonegara, Banten.",
+  },
 };
 
-const CONTACT_EMAIL = "pt.coalglobalenergy@gmail.com";
+const CONTACT_EMAIL = "coalglobalenergy@gmail.com";
 const WHATSAPP_URL =
   "https://wa.me/6289504836618?text=" +
   encodeURIComponent(

@@ -23,12 +23,18 @@ export async function generateMetadata({
   const result = await getPublishedContentBySlug(slug);
 
   if (!result.success) {
-    return { title: "Berita Tidak Ditemukan | PT. Coal Global Energy" };
+    return { title: "Article Not Found" };
   }
 
   return {
-    title: `${result.data.title} | PT. Coal Global Energy`,
+    title: result.data.title,
     description: result.data.excerpt ?? undefined,
+    openGraph: {
+      title: result.data.title,
+      description: result.data.excerpt ?? undefined,
+      type: "article",
+      publishedTime: result.data.createdAt?.toISOString(),
+    },
   };
 }
 
