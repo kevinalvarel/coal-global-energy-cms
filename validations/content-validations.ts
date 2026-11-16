@@ -12,6 +12,29 @@ export const POST_STATUSES = ["Draf", "Terjadwal", "Publikasi"] as const;
 export type PostCategory = (typeof POST_CATEGORIES)[number];
 export type PostStatus = (typeof POST_STATUSES)[number];
 
+export const POST_ATTACHMENT_CONTENT_TYPES = [
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/gif",
+] as const;
+
+export const MAX_ATTACHMENTS = 8;
+export const POST_ATTACHMENT_MAX_BYTES = 5 * 1024 * 1024;
+
+export const postAttachmentSchema = z.object({
+  url: z.url({ error: "URL lampiran tidak valid" }),
+  pathname: z.string().min(1, { error: "Path lampiran tidak valid" }),
+  name: z
+    .string()
+    .min(1, { error: "Nama file wajib diisi" })
+    .max(255, { error: "Nama file terlalu panjang" }),
+  size: z.number().int().nonnegative(),
+  contentType: z.string().min(1, { error: "Tipe file tidak valid" }),
+});
+
+export type PostAttachment = z.infer<typeof postAttachmentSchema>;
+
 const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export const createContentSchema = z.object({
@@ -43,6 +66,12 @@ export const createContentSchema = z.object({
     .nullable()
     .transform((value) => (value && value.length > 0 ? value : null)),
   content: z.string().trim().min(1, { error: "Konten wajib diisi" }),
+  attachments: z
+    .array(postAttachmentSchema)
+    .max(MAX_ATTACHMENTS, {
+      error: `Lampiran maksimal ${MAX_ATTACHMENTS} file`,
+    })
+    .default([]),
 });
 
 export const getContentsQuerySchema = z.object({

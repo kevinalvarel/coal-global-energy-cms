@@ -1,5 +1,13 @@
 import { relations } from "drizzle-orm/_relations";
-import { index, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import {
+  index,
+  jsonb,
+  pgEnum,
+  pgTable,
+  text,
+  timestamp,
+} from "drizzle-orm/pg-core";
+import type { PostAttachment } from "@/validations/content-validations";
 import { user } from "./auth-schema";
 
 export const postCategoryEnum = pgEnum("post_category", [
@@ -27,6 +35,10 @@ export const post = pgTable(
     status: postStatusEnum("status").default("Draf").notNull(),
     excerpt: text("excerpt"),
     content: text("content").notNull(),
+    attachments: jsonb("attachments")
+      .$type<PostAttachment[]>()
+      .default([])
+      .notNull(),
     authorId: text("author_id")
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),

@@ -30,6 +30,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ContentAttachments } from "@/components/admin/content-attachments";
 import {
   Field,
   FieldDescription,
@@ -80,6 +81,7 @@ export function ContentForm({ mode, initialData }: ContentFormProps) {
   const [submittingStatus, setSubmittingStatus] = useState<PostStatus | null>(
     null,
   );
+  const [uploading, setUploading] = useState(false);
 
   const schema = mode === "edit" ? updateContentSchema : createContentSchema;
 
@@ -92,6 +94,7 @@ export function ContentForm({ mode, initialData }: ContentFormProps) {
       status: initialData?.status ?? "Draf",
       excerpt: initialData?.excerpt ?? "",
       content: initialData?.content ?? "",
+      attachments: initialData?.attachments ?? [],
     },
   });
 
@@ -108,7 +111,7 @@ export function ContentForm({ mode, initialData }: ContentFormProps) {
   const watchedTitle = useWatch({ control, name: "title" }) ?? "";
   const watchedExcerpt = useWatch({ control, name: "excerpt" }) ?? "";
   const watchedStatus = useWatch({ control, name: "status" }) ?? "Draf";
-  const isBusy = isSubmitting || submittingStatus !== null;
+  const isBusy = isSubmitting || submittingStatus !== null || uploading;
 
   const primaryStatus: PostStatus =
     watchedStatus === "Terjadwal" ? "Terjadwal" : "Publikasi";
@@ -130,6 +133,7 @@ export function ContentForm({ mode, initialData }: ContentFormProps) {
       status: targetStatus,
       excerpt: values.excerpt ?? "",
       content: values.content,
+      attachments: values.attachments ?? [],
     };
 
     try {
@@ -369,6 +373,12 @@ export function ContentForm({ mode, initialData }: ContentFormProps) {
               />
               <FieldError errors={[errors.content]} />
             </Field>
+
+            <ContentAttachments
+              control={control}
+              disabled={isBusy}
+              onUploadingChange={setUploading}
+            />
           </FieldGroup>
         </CardContent>
 

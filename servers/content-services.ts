@@ -17,6 +17,7 @@ import {
   type CreateContentInput,
   type GetContentsQuery,
   type GetPublishedContentsQuery,
+  type PostAttachment,
   type PostCategory,
   type PostStatus,
   type UpdateContentInput,
@@ -45,6 +46,7 @@ export type ContentSummary = {
 
 export type ContentDetail = ContentSummary & {
   content: string;
+  attachments: PostAttachment[];
 };
 
 export type PaginatedContents = {
@@ -248,6 +250,7 @@ async function fetchContentDetail(
       status: post.status,
       excerpt: post.excerpt,
       content: post.content,
+      attachments: post.attachments,
       authorId: post.authorId,
       authorName: user.name,
       createdAt: post.createdAt,
@@ -264,6 +267,7 @@ async function fetchContentDetail(
   return {
     ...mapSummaryRow(row),
     content: row.content,
+    attachments: row.attachments,
   };
 }
 
@@ -348,6 +352,7 @@ export async function createContent(
         status: parsed.data.status,
         excerpt: parsed.data.excerpt,
         content: parsed.data.content,
+        attachments: parsed.data.attachments,
         authorId: session.user.id,
       })
       .returning();
@@ -370,6 +375,7 @@ export async function createContent(
         status: inserted.status,
         excerpt: inserted.excerpt,
         content: inserted.content,
+        attachments: inserted.attachments,
         author: {
           id: session.user.id,
           name: session.user.name,
@@ -553,6 +559,7 @@ export async function updateContent(
         status: parsedInput.data.status,
         excerpt: parsedInput.data.excerpt,
         content: parsedInput.data.content,
+        attachments: parsedInput.data.attachments,
       })
       .where(eq(post.id, parsedId.data))
       .returning({ id: post.id, slug: post.slug, status: post.status });
@@ -674,6 +681,7 @@ export async function duplicateContent(
         status: "Draf",
         excerpt: existing.excerpt,
         content: existing.content,
+        attachments: existing.attachments,
         authorId: session.user.id,
       })
       .returning();
@@ -694,6 +702,7 @@ export async function duplicateContent(
         status: inserted.status,
         excerpt: inserted.excerpt,
         content: inserted.content,
+        attachments: inserted.attachments,
         author: {
           id: session.user.id,
           name: session.user.name,
