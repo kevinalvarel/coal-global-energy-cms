@@ -2,8 +2,9 @@
 
 import { useState, type KeyboardEvent } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ArrowRight, Calendar, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import type { PublishedPost } from "@/lib/news-query";
 
 interface HeroNewsProps {
@@ -67,7 +68,21 @@ export default function HeroNews({ items }: HeroNewsProps) {
                 }}
                 className="absolute inset-0"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#06317F]/90 via-[#103984]/80 to-[#0CC0DF]/40" />
+                <div className="absolute inset-0">
+                  {activeSlide.imageUrl ? (
+                    <Image
+                      src={activeSlide.imageUrl}
+                      alt=""
+                      fill
+                      loading={safeIndex === 0 ? "eager" : "lazy"}
+                      fetchPriority={safeIndex === 0 ? "high" : undefined}
+                      sizes="(min-width: 1280px) 1216px, 100vw"
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#06317F]/90 via-[#103984]/80 to-[#0CC0DF]/40" />
+                  )}
+                </div>
                 <div
                   aria-hidden="true"
                   className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C]/95 via-[#06317F]/85 to-[#06317F]/40 lg:bg-gradient-to-r lg:from-[#06317F]/95 lg:via-[#06317F]/80 lg:to-[#0C0C0C]/35"

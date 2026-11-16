@@ -39,6 +39,7 @@ export type ContentSummary = {
   category: PostCategory;
   status: PostStatus;
   excerpt: string | null;
+  imageUrl: string | null;
   author: ContentAuthor | null;
   createdAt: Date;
   updatedAt: Date;
@@ -66,6 +67,7 @@ type PostRowBase = {
   category: PostCategory;
   status: PostStatus;
   excerpt: string | null;
+  attachments: PostAttachment[];
   authorId: string;
   authorName: string | null;
   createdAt: Date;
@@ -106,6 +108,7 @@ function mapSummaryRow(row: PostRowBase): ContentSummary {
     category: row.category,
     status: row.status,
     excerpt: row.excerpt,
+    imageUrl: row.attachments[0]?.url ?? null,
     author: row.authorName
       ? { id: row.authorId, name: row.authorName }
       : null,
@@ -211,6 +214,7 @@ async function fetchContentList(filters: {
         category: post.category,
         status: post.status,
         excerpt: post.excerpt,
+        attachments: post.attachments,
         authorId: post.authorId,
         authorName: user.name,
         createdAt: post.createdAt,
@@ -376,6 +380,7 @@ export async function createContent(
         excerpt: inserted.excerpt,
         content: inserted.content,
         attachments: inserted.attachments,
+        imageUrl: inserted.attachments[0]?.url ?? null,
         author: {
           id: session.user.id,
           name: session.user.name,
@@ -703,6 +708,7 @@ export async function duplicateContent(
         excerpt: inserted.excerpt,
         content: inserted.content,
         attachments: inserted.attachments,
+        imageUrl: inserted.attachments[0]?.url ?? null,
         author: {
           id: session.user.id,
           name: session.user.name,

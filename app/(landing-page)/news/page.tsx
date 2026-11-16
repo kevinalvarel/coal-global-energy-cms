@@ -33,6 +33,7 @@ async function getInitialNews(): Promise<NewsApiResponse> {
       slug: post.slug,
       category: post.category,
       excerpt: post.excerpt,
+      attachments: post.attachments,
       createdAt: post.createdAt,
     })
     .from(post)
@@ -41,7 +42,12 @@ async function getInitialNews(): Promise<NewsApiResponse> {
     .limit(50);
 
   const items: PublishedPost[] = rows.map((row) => ({
-    ...row,
+    id: row.id,
+    title: row.title,
+    slug: row.slug,
+    category: row.category,
+    excerpt: row.excerpt,
+    imageUrl: row.attachments[0]?.url ?? null,
     createdAt: row.createdAt.toISOString(),
   }));
 

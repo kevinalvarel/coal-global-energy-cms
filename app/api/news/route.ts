@@ -10,6 +10,7 @@ export type PublishedPost = {
   slug: string;
   category: PostCategory;
   excerpt: string | null;
+  imageUrl: string | null;
   createdAt: string; // ISO string (serializable)
 };
 
@@ -42,6 +43,7 @@ export async function GET(request: NextRequest) {
         slug: post.slug,
         category: post.category,
         excerpt: post.excerpt,
+        attachments: post.attachments,
         createdAt: post.createdAt,
       })
       .from(post)
@@ -54,7 +56,12 @@ export async function GET(request: NextRequest) {
 
   const response: NewsApiResponse = {
     items: rows.map((row) => ({
-      ...row,
+      id: row.id,
+      title: row.title,
+      slug: row.slug,
+      category: row.category,
+      excerpt: row.excerpt,
+      imageUrl: row.attachments[0]?.url ?? null,
       createdAt: row.createdAt.toISOString(),
     })),
     total: Number(countRows[0]?.total ?? 0),

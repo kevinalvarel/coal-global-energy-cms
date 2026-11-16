@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, Calendar } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import type { PublishedPost } from "@/lib/news-query";
 
 interface NewsCardProps {
@@ -8,13 +9,27 @@ interface NewsCardProps {
   sizes?: string;
 }
 
-export default function NewsCard({ item, showExcerpt = true }: NewsCardProps) {
+export default function NewsCard({
+  item,
+  showExcerpt = true,
+  sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw",
+}: NewsCardProps) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xs transition-colors hover:border-[#103984]/40 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
       <div className="relative flex aspect-[16/10] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-[#103984]/10 to-[#0CC0DF]/10 dark:from-[#103984]/20 dark:to-[#0CC0DF]/20">
-        <span className="text-xs font-semibold uppercase tracking-widest text-[#103984]/50 dark:text-[#0CC0DF]/50">
-          {item.category}
-        </span>
+        {item.imageUrl ? (
+          <Image
+            src={item.imageUrl}
+            alt=""
+            fill
+            sizes={sizes}
+            className="object-cover"
+          />
+        ) : (
+          <span className="text-xs font-semibold uppercase tracking-widest text-[#103984]/50 dark:text-[#0CC0DF]/50">
+            {item.category}
+          </span>
+        )}
       </div>
 
       <div className="flex flex-1 flex-col p-5">

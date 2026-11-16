@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -33,6 +34,7 @@ export async function generateMetadata({
       description: result.data.excerpt ?? undefined,
       type: "article",
       publishedTime: result.data.createdAt?.toISOString(),
+      images: result.data.imageUrl ? [result.data.imageUrl] : undefined,
     },
   };
 }
@@ -58,11 +60,19 @@ async function NewsDetailContent({ params }: NewsDetailPageProps) {
           slug: item.slug,
           category: item.category,
           excerpt: item.excerpt,
+          imageUrl: item.imageUrl,
           createdAt: item.createdAt.toISOString(),
         }))
     : [];
 
-  const publishedDate = article.createdAt.toISOString().slice(0, 10);
+  const publishedDate = new Intl.DateTimeFormat("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "Asia/Jakarta",
+  }).format(article.createdAt);
+
+  const galleryPhotos = article.attachments.slice(1);
 
   return (
     <article className="mx-auto max-w-4xl px-4 md:px-6">
@@ -83,8 +93,32 @@ async function NewsDetailContent({ params }: NewsDetailPageProps) {
           <span className="font-semibold text-[#103984] dark:text-[#0CC0DF]">
             {article.category}
           </span>
+          <span aria-hidden="true" className="text-neutral-400">
+            •
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-neutral-600 dark:text-neutral-400">
+            <Calendar className="size-4" aria-hidden="true" />
+            <time dateTime={article.createdAt.toISOString()}>
+              {publishedDate}
+            </time>
+          </span>
         </div>
       </header>
+
+      {article.imageUrl && (
+        <div className="mt-6 overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900">
+          <Image
+            src={article.imageUrl}
+            alt={`Foto utama: ${article.title}`}
+            width={1200}
+            height={675}
+            loading="eager"
+            fetchPriority="high"
+            sizes="(min-width: 896px) 896px, 100vw"
+            className="aspect-[16/9] w-full object-cover"
+          />
+        </div>
+      )}
 
       <div className="mt-8 rounded-2xl border border-neutral-200 bg-white p-6 shadow-xs sm:p-10 dark:border-neutral-800 dark:bg-neutral-900">
         {article.excerpt && (
@@ -101,6 +135,30 @@ async function NewsDetailContent({ params }: NewsDetailPageProps) {
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
       </div>
+
+      {galleryPhotos.length > 0 && (
+        <section aria-labelledby="gallery-heading" className="mt-8">
+          <h2
+            id="gallery-heading"
+            className="text-xl font-bold text-[#06317F] sm:text-2xl dark:text-white"
+          >
+            Galeri Foto
+          </h2>
+          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {galleryPhotos.map((photo, index) => (
+              <Image
+                key={photo.url}
+                src={photo.url}
+                alt={`Foto ${index + 2}: ${article.title}`}
+                width={480}
+                height={480}
+                sizes="(min-width: 640px) 30vw, 50vw"
+                className="aspect-square w-full rounded-xl border border-neutral-200 object-cover dark:border-neutral-800"
+              />
+            ))}
+          </div>
+        </section>
+      )}
 
       {relatedArticles.length > 0 && (
         <section
