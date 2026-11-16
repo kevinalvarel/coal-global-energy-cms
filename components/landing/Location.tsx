@@ -1,35 +1,30 @@
+"use client";
+
 import { Anchor, ExternalLink, MapPin, Truck } from "lucide-react";
 import { addressLines, mapLink, mapSrc } from "@/lib/map";
-
-const accessPoints = [
-  {
-    icon: Anchor,
-    title: "Akses Laut",
-    desc: "Berada di pesisir Selat Sunda, mendukung bongkar muat tongkang dan distribusi antar-pulau.",
-  },
-  {
-    icon: Truck,
-    title: "Akses Darat",
-    desc: "Terhubung dengan jaringan jalan lintas menuju kawasan industri Cilegon dan sekitarnya.",
-  },
-];
+import { useLanguage } from "@/hooks/use-language";
 
 export function LocationSection() {
+  const { t } = useLanguage();
+
+  const accessPoints = [
+    { icon: Anchor, ...t.home.location.accessPoints[0] },
+    { icon: Truck, ...t.home.location.accessPoints[1] },
+  ];
+
   return (
     <section id="lokasi" className="relative w-full py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground leading-[1.2]">
-            Lokasi{" "}
+            {t.home.location.titlePart1}{" "}
             <span className="relative inline-block text-primary">
-              Strategis{" "}
+              {t.home.location.titleHighlight}{" "}
             </span>{" "}
-            di Jalur Distribusi Bojonegara
+            {t.home.location.titlePart2}
           </h2>
           <p className="mt-5 text-sm md:text-lg text-slate-600 dark:text-neutral-300 leading-relaxed">
-            Fasilitas stockpile PT. Coal Global Energy berada di kawasan
-            pelabuhan Bojonegara, Serang, Banten, pada jalur distribusi Selat
-            Sunda.
+            {t.home.location.description}
           </p>
         </div>
 
@@ -52,12 +47,12 @@ export function LocationSection() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-foreground">
-                    Alamat Operasional
+                    {t.home.location.operationalAddressTitle}
                   </h3>
                   <address className="not-italic mt-2 text-sm text-slate-600 dark:text-neutral-300 leading-relaxed">
-                    Kawasan Pelabuhan Bojonegara
+                    {t.home.location.area}
                     <br />
-                    Serang, Banten
+                    {t.home.location.region}
                     <br />
                     <span className="text-xs text-slate-600 dark:text-neutral-300">
                       {addressLines.map((line) => (
@@ -76,7 +71,7 @@ export function LocationSection() {
                 rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
               >
-                Buka di Google Maps
+                {t.home.location.openMaps}
                 <ExternalLink className="w-4 h-4" aria-hidden="true" />
               </a>
             </div>

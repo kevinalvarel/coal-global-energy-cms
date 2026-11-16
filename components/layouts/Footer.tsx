@@ -1,19 +1,24 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, MapPin } from "lucide-react";
 import { addressLines, mapLink, mapSrc } from "@/lib/map";
-
-const navItems = [
-  { name: "Produk", href: "/products" },
-  { name: "Layanan", href: "/services" },
-  { name: "Solusi", href: "/solution" },
-  { name: "Berita", href: "/news" },
-  { name: "Legal", href: "/legal" },
-];
-
-const contacts = ["coalglobalenergy@gmail.com", "[Telepon]", "[Media Sosial]"];
+import { useLanguage } from "@/hooks/use-language";
 
 export function Footer() {
+  const { t } = useLanguage();
+
+  const navItems = [
+    { name: t.navbar.items.products, href: "/products" },
+    { name: t.navbar.items.services, href: "/services" },
+    { name: t.navbar.items.solutions, href: "/solution" },
+    { name: t.navbar.items.news, href: "/news" },
+    { name: t.navbar.items.legal, href: "/legal" },
+  ];
+
+  const contacts = [t.common.labels.email, t.common.labels.hotlineNumber];
+
   return (
     <footer className="bg-[#0b1a33] text-[#c9d4e6] rounded-t-4xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -28,12 +33,11 @@ export function Footer() {
                 className="h-8 w-8 object-contain"
               />
               <span className="text-base font-bold text-white">
-                PT. Coal Global Energy
+                {t.common.companyName}
               </span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed">
-              Penyediaan fasilitas stockpile dan distribusi batu bara di jalur
-              pelabuhan Bojonegara.
+              {t.footer.companyDescription}
             </p>
             <address className="not-italic mt-6 flex items-start gap-2 text-sm leading-relaxed">
               <MapPin
@@ -54,13 +58,15 @@ export function Footer() {
               rel="noopener noreferrer"
               className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#8ab4ff] hover:underline"
             >
-              Buka di Google Maps
+              {t.common.buttons.openGoogleMaps}
               <ExternalLink className="w-4 h-4" aria-hidden="true" />
             </a>
           </div>
 
-          <nav className="lg:col-span-2" aria-label="Navigasi footer">
-            <h2 className="text-sm font-bold text-white">Navigasi</h2>
+          <nav className="lg:col-span-2" aria-label={t.footer.navigationTitle}>
+            <h2 className="text-sm font-bold text-white">
+              {t.footer.navigationTitle}
+            </h2>
             <ul className="mt-4 space-y-3 text-sm">
               {navItems.map((item) => (
                 <li key={item.href}>
@@ -76,7 +82,9 @@ export function Footer() {
           </nav>
 
           <div className="lg:col-span-3">
-            <h2 className="text-sm font-bold text-white">Kontak</h2>
+            <h2 className="text-sm font-bold text-white">
+              {t.footer.contactTitle}
+            </h2>
             <ul className="mt-4 space-y-3 text-sm">
               {contacts.map((contact) => (
                 <li key={contact}>{contact}</li>
@@ -85,10 +93,12 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-3">
-            <h2 className="text-sm font-bold text-white">Lokasi</h2>
+            <h2 className="text-sm font-bold text-white">
+              {t.footer.locationTitle}
+            </h2>
             <div className="mt-4 rounded-lg overflow-hidden border border-white/10">
               <iframe
-                title="Peta lokasi PT. Coal Global Energy di Bojonegara, Serang, Banten"
+                title={t.footer.locationTitle}
                 src={mapSrc}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -99,7 +109,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-6 border-t border-white/10 text-xs text-[#8a97ad]">
-          &copy; PT. Coal Global Energy. Seluruh hak cipta dilindungi.
+          {t.footer.copyright}
         </div>
       </div>
     </footer>

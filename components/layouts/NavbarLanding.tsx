@@ -10,16 +10,19 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
+import { LanguageToggle } from "@/components/ui/language-toggle";
+import { useLanguage } from "@/hooks/use-language";
 import { useState } from "react";
 import { Link } from "react-scroll";
 
 export function NavbarLanding() {
+  const { t } = useLanguage();
   const navItems = [
-    { name: "Produk", link: "/products" },
-    { name: "Layanan", link: "/services" },
-    { name: "Solusi", link: "/solution" },
-    { name: "Perizinan", link: "/legal" },
-    { name: "Berita", link: "/news" },
+    { name: t.navbar.items.products, link: "/products" },
+    { name: t.navbar.items.services, link: "/services" },
+    { name: t.navbar.items.solutions, link: "/solution" },
+    { name: t.navbar.items.legal, link: "/legal" },
+    { name: t.navbar.items.news, link: "/news" },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -31,10 +34,11 @@ export function NavbarLanding() {
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
-          <div className="flex items-center gap-4">
+          <div className="relative z-20 flex items-center gap-4">
             <Link to="cta" smooth={true} duration={500} offset={-100}>
-              <NavbarButton variant="primary">Contacts</NavbarButton>
+              <NavbarButton variant="primary">{t.navbar.cta}</NavbarButton>
             </Link>
+            <LanguageToggle />
           </div>
         </NavBody>
 
@@ -69,9 +73,10 @@ export function NavbarLanding() {
                   variant="primary"
                   className="w-full"
                 >
-                  Contacts
+                  {t.navbar.cta}
                 </NavbarButton>
               </Link>
+              <LanguageToggle />
             </div>
           </MobileNavMenu>
         </MobileNav>

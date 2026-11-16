@@ -1,18 +1,22 @@
+"use client";
+
 import { FaWhatsapp } from "react-icons/fa";
+import { useLanguage } from "@/hooks/use-language";
 
 const WHATSAPP_URL = "https://wa.me/6289504836618";
 
 export function CtaSection() {
+  const { t } = useLanguage();
+
   return (
     <section id="cta" className="w-full pb-24 md:pb-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-4xl bg-primary px-6 py-14 sm:px-12 md:px-16 md:py-20 text-center">
           <h2 className="mx-auto max-w-2xl text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-primary-foreground leading-tight">
-            Siap Memenuhi Kebutuhan Energi Industri Anda
+            {t.home.cta.title}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm sm:text-base md:text-lg text-primary-foreground/80 leading-relaxed">
-            Diskusikan kebutuhan batu bara, biomassa, dan stockpile Anda
-            langsung dengan tim kami.
+            {t.home.cta.description}
           </p>
           <a
             href={WHATSAPP_URL}
@@ -20,7 +24,7 @@ export function CtaSection() {
             rel="noopener noreferrer"
             className="mt-8 inline-flex w-full sm:w-auto items-center justify-center rounded-md bg-green-700 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-green-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary gap-3"
           >
-            <FaWhatsapp size={25} /> Hubungi via WhatsApp
+            <FaWhatsapp size={25} /> {t.home.cta.button}
           </a>
         </div>
       </div>

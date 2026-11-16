@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/layouts/Footer";
 import { NavbarLanding } from "@/components/layouts/NavbarLanding";
 import { ReactNode } from "react";
+import { LanguageProvider } from "@/hooks/use-language";
 
 export const metadata: Metadata = {
   title: {
@@ -50,9 +51,11 @@ export default function LandingPageLayout({
 }) {
   return (
     <div>
-      <NavbarLanding />
-      {children}
-      <Footer />
+      <LanguageProvider defaultLocale="id">
+        <NavbarLanding />
+        {children}
+        <Footer />
+      </LanguageProvider>
     </div>
   );
 }

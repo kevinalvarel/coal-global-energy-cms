@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function CompanyPage() {
-  return <ComingSoon title="Perizinan" />;
+  return <ComingSoon />;
 }

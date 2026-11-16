@@ -4,8 +4,10 @@ import { motion, Variants } from "motion/react";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-scroll";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function HeroServices() {
+  const { t } = useLanguage();
   const textVariants: Variants = {
     hidden: { opacity: 0, filter: "blur(10px)", y: 20 },
     visible: {
@@ -41,16 +43,14 @@ export default function HeroServices() {
           }}
         >
           <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-5 leading-[1.1] px-6 md:px-0">
-            Layanan Manajemen {""}
+            {t.services.hero.titlePart1}{" "}
             <span className="relative inline-block text-primary">
-              Stockpile Terpadu
+              {t.services.hero.titleHighlight}
             </span>{" "}
-            &amp; Terpercaya
+            {t.services.hero.titlePart2}
           </h1>
           <p className="text-sm sm:text-sm md:text-lg lg:text-xl text-neutral-600 dark:text-neutral-300 max-w-[350px]  md:max-w-lg  mx-auto mb-6 md:mb-5">
-            Fasilitas stockpile strategis di jalur Bojonegara dengan jembatan
-            timbang, alat berat modern, kontrol kualitas ketat, serta pengawasan
-            dan mitigasi swa-bakar 24/7.
+            {t.services.hero.description}
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-[300px] md:w-full mb-16 mx-auto">
             <Button
@@ -61,7 +61,7 @@ export default function HeroServices() {
               }
               className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-lg hover:bg-(--color-primary)/90 text-white w-full sm:w-auto shadow-lg shadow-(--color-primary)/20 transition-all hover:shadow-(--color-primary)/40  cursor-pointer"
             >
-              Konsultasi Layanan
+              {t.services.hero.consultButton}
             </Button>
 
             <Button
@@ -77,7 +77,7 @@ export default function HeroServices() {
               variant={"outline"}
               className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-lg w-full sm:w-auto border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-300 dark:hover:bg-neutral-800 transition-colors  cursor-pointer"
             >
-              Detail Fasilitas
+              {t.services.hero.detailsButton}
             </Button>
           </div>
         </AnimatedGroup>

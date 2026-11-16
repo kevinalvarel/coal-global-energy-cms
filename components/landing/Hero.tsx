@@ -4,8 +4,10 @@ import { motion, Variants } from "motion/react";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-scroll";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function HeroSection() {
+  const { t } = useLanguage();
   const textVariants: Variants = {
     hidden: { opacity: 0, filter: "blur(10px)", y: 20 },
     visible: {
@@ -39,22 +41,18 @@ export default function HeroSection() {
           }}
         >
           <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-5 leading-[1.1] px-6 md:px-0">
-            Mitra Terpercaya Rantai Pasok{" "}
+            {t.home.hero.titlePart1}{" "}
             <span className="relative inline-block text-primary">
-              Batu Bara
+              {t.home.hero.titleHighlight1}
             </span>{" "}
-            &amp;{" "}
+            {t.home.hero.titlePart2}{" "}
             <span className="relative inline-block text-primary">
-              Fasilitas Stockpile{" "}
+              {t.home.hero.titleHighlight2}{" "}
             </span>
-            Strategis Berskala Nasional hingga Ekspor
+            {t.home.hero.titlePart3}
           </h1>
           <p className="text-sm sm:text-sm md:text-lg lg:text-xl text-neutral-600 dark:text-neutral-300 max-w-[350px]  md:max-w-lg  mx-auto mb-6 md:mb-5">
-            PT. Coal Global Energy menyediakan suplai batu bara berkualitas dari
-            berbagai tambang resmi di Indonesia serta layanan penyimpanan
-            sementara (stockpile) berkapasitas besar di jalur distribusi
-            pelabuhan Bojonegara, Banten untuk memenuhi kebutuhan industri
-            domestik maupun pasar Asia Tenggara dan dunia.
+            {t.home.hero.description}
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-[300px] md:w-full mb-16 mx-auto">
             <Button
@@ -65,14 +63,14 @@ export default function HeroSection() {
               }
               className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-lg hover:bg-(--color-primary)/90 text-white w-full sm:w-auto shadow-lg shadow-(--color-primary)/20 transition-all hover:shadow-(--color-primary)/40  cursor-pointer"
             >
-              Ajukan Permintaan Harga (RFQ)
+              {t.home.hero.rfqButton}
             </Button>
 
             <Button
               variant={"outline"}
               className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-lg w-full sm:w-auto border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-300 dark:hover:bg-neutral-800 transition-colors  cursor-pointer"
             >
-              Unduh Company Profile PDF
+              {t.home.hero.downloadPdfButton}
             </Button>
           </div>
         </AnimatedGroup>

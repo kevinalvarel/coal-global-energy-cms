@@ -4,7 +4,6 @@ import { useState, type KeyboardEvent } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, Calendar, ChevronLeft, ChevronRight } from "lucide-react";
-import { formatNewsDate } from "@/data/news-data";
 import type { PublishedPost } from "@/lib/news-query";
 
 interface HeroNewsProps {
@@ -102,16 +101,6 @@ export default function HeroNews({ items }: HeroNewsProps) {
                       <span className="font-semibold text-[#0CC0DF]">
                         {activeSlide.category}
                       </span>
-                      <span aria-hidden="true" className="text-white/40">
-                        /
-                      </span>
-                      <time
-                        dateTime={activeSlide.createdAt.slice(0, 10)}
-                        className="inline-flex items-center gap-1.5 text-[#E5EAF0]/90"
-                      >
-                        <Calendar className="size-3.5 text-[#0CC0DF]" />
-                        {formatNewsDate(activeSlide.createdAt.slice(0, 10))}
-                      </time>
                     </div>
 
                     {activeSlide.excerpt && (

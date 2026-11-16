@@ -7,7 +7,6 @@ import {
   getPublishedContentBySlug,
   getPublishedContents,
 } from "@/servers/content-services";
-import { formatNewsDate } from "@/data/news-data";
 import NewsCard from "@/components/landing/news/news-card";
 import NewsDetailSkeleton from "@/components/landing/news/news-detail-skeleton";
 import type { PublishedPost } from "@/lib/news-query";
@@ -84,16 +83,6 @@ async function NewsDetailContent({ params }: NewsDetailPageProps) {
           <span className="font-semibold text-[#103984] dark:text-[#0CC0DF]">
             {article.category}
           </span>
-          <span aria-hidden="true" className="text-neutral-400">
-            /
-          </span>
-          <time
-            dateTime={publishedDate}
-            className="inline-flex items-center gap-1.5 text-neutral-600 dark:text-neutral-400"
-          >
-            <Calendar className="size-4" />
-            {formatNewsDate(publishedDate)}
-          </time>
         </div>
       </header>
 

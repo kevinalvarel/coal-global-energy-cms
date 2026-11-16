@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowRight, Calendar } from "lucide-react";
-import { formatNewsDate } from "@/data/news-data";
 import type { PublishedPost } from "@/lib/news-query";
 
 interface NewsCardProps {
@@ -9,10 +8,7 @@ interface NewsCardProps {
   sizes?: string;
 }
 
-export default function NewsCard({
-  item,
-  showExcerpt = true,
-}: NewsCardProps) {
+export default function NewsCard({ item, showExcerpt = true }: NewsCardProps) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xs transition-colors hover:border-[#103984]/40 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
       <div className="relative flex aspect-[16/10] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-[#103984]/10 to-[#0CC0DF]/10 dark:from-[#103984]/20 dark:to-[#0CC0DF]/20">
@@ -26,16 +22,6 @@ export default function NewsCard({
           <span className="font-semibold text-[#103984] dark:text-[#0CC0DF]">
             {item.category}
           </span>
-          <span aria-hidden="true" className="text-neutral-300 dark:text-neutral-600">
-            /
-          </span>
-          <time
-            dateTime={item.createdAt}
-            className="inline-flex items-center gap-1.5 text-neutral-600 dark:text-neutral-400"
-          >
-            <Calendar className="size-3.5" />
-            {formatNewsDate(item.createdAt.slice(0, 10))}
-          </time>
         </div>
 
         <h3 className="text-lg leading-snug font-semibold text-[#0C0C0C] dark:text-white">

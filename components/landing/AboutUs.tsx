@@ -17,37 +17,18 @@ import {
   Flame,
 } from "lucide-react";
 import LogoLoop from "@/components/react-bits/logo-loop";
+import { useLanguage } from "@/hooks/use-language";
 
 export function AboutUs() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<"visi" | "misi">("visi");
 
-  const missionList = [
-    {
-      title: "Kualitas Produk Prima",
-      desc: "Menyediakan batu bara berkualitas tinggi teruji kalori dan parameter teknis sesuai standar operasional klien.",
-      icon: ShieldCheck,
-    },
-    {
-      title: "Kemitraan Jangka Panjang",
-      desc: "Membangun sinergi berkelanjutan dengan para pelanggan dan tambang mitra atas dasar transparansi serta integritas.",
-      icon: Users2,
-    },
-    {
-      title: "Rantai Pasok Tepat Waktu",
-      desc: "Distribusi logistik laut & darat yang terukur, aman, dan efisien via akses pelabuhan strategis Bojonegara.",
-      icon: Truck,
-    },
-    {
-      title: "Tanggung Jawab Lingkungan",
-      desc: "Menjalankan tata kelola komoditas energi dengan standar mitigasi swa-bakar dan pemenuhan regulasi lingkungan hidup.",
-      icon: Leaf,
-    },
-    {
-      title: "Integritas & Kompetensi SDM",
-      desc: "Didukung tim operasional serta teknisi berpengalaman yang berdedikasi menjaga kepuasan klien 24/7.",
-      icon: TrendingUp,
-    },
-  ];
+  const missionIcons = [ShieldCheck, Users2, Truck, Leaf, TrendingUp];
+
+  const missionList = t.home.about.mission.items.map((item, index) => ({
+    ...item,
+    icon: missionIcons[index] ?? ShieldCheck,
+  }));
 
   const imageLogos = [
     {
@@ -92,7 +73,7 @@ export function AboutUs() {
           >
             <Building2 className="w-4 h-4 text-[#103984] dark:text-[#0CC0DF]" />
             <span className="text-xs md:text-sm font-semibold tracking-wider uppercase text-[#103984] dark:text-[#0CC0DF]">
-              Profil Perusahaan & Dedikasi
+              {t.home.about.badge}
             </span>
           </motion.div>
 
@@ -103,10 +84,7 @@ export function AboutUs() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-white leading-[1.2]"
           >
-            Menghubungkan Tambang Terpercaya dengan{" "}
-            <span className="text-gray-900 dark:text-white">
-              Kebutuhan Energi Masa Depan
-            </span>
+            {t.home.about.title}
           </motion.h2>
 
           <motion.p
@@ -116,13 +94,7 @@ export function AboutUs() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-5 text-sm sm:text-sm md:text-lg lg:text-xl text-neutral-600 dark:text-neutral-300 leading-relaxed"
           >
-            <strong className="text-gray-900 dark:text-white font-semibold">
-              PT. Coal Global Energy
-            </strong>{" "}
-            adalah perseroan swasta nasional yang bergerak dalam perdagangan
-            besar bahan bakar padat, komoditas biomassa, serta penyediaan
-            fasilitas stockpile modern berkapasitas masif di simpul pelabuhan
-            Bojonegara, Banten.
+            {t.home.about.lead}
           </motion.p>
         </div>
 
@@ -151,28 +123,17 @@ export function AboutUs() {
               <div className="flex items-center gap-3 mb-6">
                 <span className="h-2 w-10 bg-[#0CC0DF] rounded-full" />
                 <span className="text-xs font-bold tracking-widest text-[#06317F] dark:text-[#0CC0DF] uppercase">
-                  Tentang PT. Coal Global Energy
+                  {t.home.about.storyTag}
                 </span>
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-5 leading-snug">
-                Pilar Rantai Pasok Terintegrasi dengan Tata Kelola Berstandar
-                Tinggi
+                {t.home.about.storyTitle}
               </h3>
 
               <div className="space-y-4 text-neutral-600 dark:text-neutral-300 text-sm sm:text-base leading-relaxed">
-                <p>
-                  Didirikan dengan komitmen profesionalisme mutlak, kami
-                  menjembatani pasokan komoditas batu bara berkualitas langsung
-                  dari tambang berizin resmi (IUP-OP) di Indonesia
-                </p>
-                <p>
-                  Melalui kepemilikan dan pengelolaan langsung fasilitas
-                  penyimpanan sementara (<strong>Stockpiling Services</strong>)
-                  di Bojonegara, kami menjamin kestabilan suplai, inspeksi mutu
-                  berkala, mitigasi swa-bakar, dan kecepatan distribusi logistik
-                  tongkang maupun armada darat.
-                </p>
+                <p>{t.home.about.storyParagraph1}</p>
+                <p>{t.home.about.storyParagraph2}</p>
               </div>
 
               {/* Point of Proof */}
@@ -183,10 +144,10 @@ export function AboutUs() {
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-gray-900 dark:text-white">
-                      Hub Maritim Strategis
+                      {t.home.about.points.maritime.title}
                     </h4>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
-                      Akses cepat dermaga tongkang Selat Sunda
+                      {t.home.about.points.maritime.desc}
                     </p>
                   </div>
                 </div>
@@ -197,10 +158,10 @@ export function AboutUs() {
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-gray-900 dark:text-white">
-                      Kesiapan Ekspor
+                      {t.home.about.points.export.title}
                     </h4>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
-                      Standar pemenuhan pasar Asia Tenggara
+                      {t.home.about.points.export.desc}
                     </p>
                   </div>
                 </div>
@@ -222,7 +183,7 @@ export function AboutUs() {
             {/* Header Tabs */}
             <div className="relative z-10 flex items-center justify-between mb-8 pb-4 border-b border-white/15">
               <span className="text-xs font-bold tracking-widest text-[#0CC0DF] uppercase">
-                Arah Strategis
+                {t.home.about.strategicDirectionTag}
               </span>
               <div className="flex p-1 bg-black/25 backdrop-blur-md rounded-lg border border-white/10">
                 <button
@@ -234,7 +195,7 @@ export function AboutUs() {
                       : "text-white/70 hover:text-white"
                   }`}
                 >
-                  Visi
+                  {t.home.about.tabs.vision}
                 </button>
                 <button
                   type="button"
@@ -245,7 +206,7 @@ export function AboutUs() {
                       : "text-white/70 hover:text-white"
                   }`}
                 >
-                  5 Pilar Misi
+                  {t.home.about.tabs.mission}
                 </button>
               </div>
             </div>
@@ -267,21 +228,16 @@ export function AboutUs() {
                         <Flame className="w-8 h-8 text-[#0CC0DF]" />
                       </div>
                       <h4 className="text-sm font-semibold tracking-wider uppercase text-white/70 mb-3">
-                        Visi Perusahaan
+                        {t.home.about.vision.title}
                       </h4>
                       <blockquote className="text-xl sm:text-2xl font-semibold leading-relaxed tracking-tight text-white mb-6">
-                        &ldquo;Menjadi perusahaan jasa penjualan batu bara yang
-                        terpercaya, berdaya saing tinggi, dan berkomitmen pada
-                        kualitas serta keberlanjutan di pasar nasional maupun
-                        internasional.&rdquo;
+                        &ldquo;{t.home.about.vision.quote}&rdquo;
                       </blockquote>
                     </div>
 
                     <div className="p-4 rounded-xl bg-white/5 border border-white/10 mt-6">
                       <p className="text-xs text-white/80 leading-relaxed">
-                        Fokus utama kami adalah konsistensi pasokan bahan bakar
-                        energi yang aman dan memenuhi spesifikasi teknis
-                        pembangkit dan industri secara berkelanjutan.
+                        {t.home.about.vision.note}
                       </p>
                     </div>
                   </motion.div>
@@ -295,7 +251,7 @@ export function AboutUs() {
                     className="space-y-3.5"
                   >
                     <h4 className="text-xs font-semibold tracking-wider uppercase text-white/70 mb-2">
-                      5 Komitmen Operasional & Kemitraan:
+                      {t.home.about.mission.title}
                     </h4>
                     {missionList.map((misi, idx) => {
                       const Icon = misi.icon;
@@ -332,7 +288,7 @@ export function AboutUs() {
         >
           <div className="text-center max-w-xl mx-auto mb-8">
             <span className="text-xs uppercase font-extrabold tracking-widest text-slate-400 dark:text-neutral-500">
-              Dipercaya oleh Pelaku Industri & Mitra Terkemuka
+              {t.common.labels.trustedByLeaders}
             </span>
           </div>
 

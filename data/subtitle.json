@@ -1,0 +1,958 @@
+{
+  "id": {
+    "common": {
+      "companyName": "PT. Coal Global Energy",
+      "buttons": {
+        "rfq": "Ajukan Permintaan Harga (RFQ)",
+        "downloadCompanyProfile": "Unduh Company Profile PDF",
+        "consultWhatsApp": "Konsultasi via WhatsApp",
+        "contactWhatsApp": "Hubungi via WhatsApp",
+        "viewSpecs": "Lihat Spesifikasi Produk",
+        "exploreStockpile": "Lihat Layanan Stockpile",
+        "exploreSectors": "Pelajari Sektor Industri",
+        "consultSolutions": "Konsultasi Solusi Industri",
+        "serviceConsultation": "Konsultasi Layanan",
+        "facilityDetails": "Detail Fasilitas",
+        "backToHome": "Kembali ke Beranda",
+        "openGoogleMaps": "Buka di Google Maps",
+        "verifyDocs": "Verifikasi Dokumen / Hubungi Kami",
+        "downloadLegalSummary": "Unduh Ringkasan Legalitas"
+      },
+      "labels": {
+        "trustedByLeaders": "Dipercaya oleh Pelaku Industri & Mitra Terkemuka",
+        "operationalAddress": "Alamat Operasional",
+        "specParameters": "Parameter spesifikasi",
+        "coreCommodity": "Komoditas Utama",
+        "facility": "Fasilitas",
+        "commodity": "Komoditas",
+        "stage": "Tahap",
+        "hotline": "Hotline",
+        "hotlineNumber": "0895-0483-6618",
+        "email": "coalglobalenergy@gmail.com"
+      }
+    },
+    "navbar": {
+      "brand": "PT. Coal Global Energy",
+      "items": {
+        "products": "Produk",
+        "services": "Layanan",
+        "solutions": "Solusi",
+        "legal": "Perizinan",
+        "news": "Berita"
+      },
+      "cta": "Kontak"
+    },
+    "footer": {
+      "companyDescription": "Penyediaan fasilitas stockpile dan distribusi batu bara di jalur pelabuhan Bojonegara.",
+      "navigationTitle": "Navigasi",
+      "contactTitle": "Kontak",
+      "locationTitle": "Lokasi",
+      "copyright": "© PT. Coal Global Energy. Seluruh hak cipta dilindungi."
+    },
+    "home": {
+      "hero": {
+        "titlePart1": "Mitra Terpercaya Rantai Pasok",
+        "titleHighlight1": "Batu Bara",
+        "titlePart2": "&",
+        "titleHighlight2": "Fasilitas Stockpile",
+        "titlePart3": "Strategis Berskala Nasional hingga Ekspor",
+        "description": "PT. Coal Global Energy menyediakan suplai batu bara berkualitas dari berbagai tambang resmi di Indonesia serta layanan penyimpanan sementara (stockpile) berkapasitas besar di jalur distribusi pelabuhan Bojonegara, Banten untuk memenuhi kebutuhan industri domestik maupun pasar Asia Tenggara dan dunia.",
+        "rfqButton": "Ajukan Permintaan Harga (RFQ)",
+        "downloadPdfButton": "Unduh Company Profile PDF"
+      },
+      "about": {
+        "badge": "Profil Perusahaan & Dedikasi",
+        "title": "Menghubungkan Tambang Terpercaya dengan Kebutuhan Energi Masa Depan",
+        "lead": "PT. Coal Global Energy adalah perseroan swasta nasional yang bergerak dalam perdagangan besar bahan bakar padat, komoditas biomassa, serta penyediaan fasilitas stockpile modern berkapasitas masif di simpul pelabuhan Bojonegara, Banten.",
+        "storyTag": "Tentang PT. Coal Global Energy",
+        "storyTitle": "Pilar Rantai Pasok Terintegrasi dengan Tata Kelola Berstandar Tinggi",
+        "storyParagraph1": "Didirikan dengan komitmen profesionalisme mutlak, kami menjembatani pasokan komoditas batu bara berkualitas langsung dari tambang berizin resmi (IUP-OP) di Indonesia.",
+        "storyParagraph2": "Melalui kepemilikan dan pengelolaan langsung fasilitas penyimpanan sementara (Stockpiling Services) di Bojonegara, kami menjamin kestabilan suplai, inspeksi mutu berkala, mitigasi swa-bakar, dan kecepatan distribusi logistik tongkang maupun armada darat.",
+        "points": {
+          "maritime": {
+            "title": "Hub Maritim Strategis",
+            "desc": "Akses cepat dermaga tongkang Selat Sunda"
+          },
+          "export": {
+            "title": "Kesiapan Ekspor",
+            "desc": "Standar pemenuhan pasar Asia Tenggara"
+          }
+        },
+        "strategicDirectionTag": "Arah Strategis",
+        "tabs": {
+          "vision": "Visi",
+          "mission": "5 Pilar Misi"
+        },
+        "vision": {
+          "title": "Visi Perusahaan",
+          "quote": "Menjadi perusahaan jasa penjualan batu bara yang terpercaya, berdaya saing tinggi, dan berkomitmen pada kualitas serta keberlanjutan di pasar nasional maupun internasional.",
+          "note": "Fokus utama kami adalah konsistensi pasokan bahan bakar energi yang aman dan memenuhi spesifikasi teknis pembangkit dan industri secara berkelanjutan."
+        },
+        "mission": {
+          "title": "5 Komitmen Operasional & Kemitraan:",
+          "items": [
+            {
+              "title": "Kualitas Produk Prima",
+              "desc": "Menyediakan batu bara berkualitas tinggi teruji kalori dan parameter teknis sesuai standar operasional klien."
+            },
+            {
+              "title": "Kemitraan Jangka Panjang",
+              "desc": "Membangun sinergi berkelanjutan dengan para pelanggan dan tambang mitra atas dasar transparansi serta integritas."
+            },
+            {
+              "title": "Rantai Pasok Tepat Waktu",
+              "desc": "Distribusi logistik laut & darat yang terukur, aman, dan efisien via akses pelabuhan strategis Bojonegara."
+            },
+            {
+              "title": "Tanggung Jawab Lingkungan",
+              "desc": "Menjalankan tata kelola komoditas energi dengan standar mitigasi swa-bakar dan pemenuhan regulasi lingkungan hidup."
+            },
+            {
+              "title": "Integritas & Kompetensi SDM",
+              "desc": "Didukung tim operasional serta teknisi berpengalaman yang berdedikasi menjaga kepuasan klien 24/7."
+            }
+          ]
+        },
+        "trustedByTitle": "Dipercaya oleh Pelaku Industri & Mitra Terkemuka"
+      },
+      "gallery": {
+        "titlePart1": "GALLERY",
+        "titlePart2": "PERUSAHAAN",
+        "description": "Dokumentasi Operasional milik PT Coal Global Energy",
+        "labels": {
+          "loadingCoal": "Loading Coal",
+          "unloadingCoal": "Unloading Coal",
+          "office": "Office",
+          "stockpile": "Stockpile"
+        }
+      },
+      "location": {
+        "titlePart1": "Lokasi",
+        "titleHighlight": "Strategis",
+        "titlePart2": "di Jalur Distribusi Bojonegara",
+        "description": "Fasilitas stockpile PT. Coal Global Energy berada di kawasan pelabuhan Bojonegara, Serang, Banten, pada jalur distribusi Selat Sunda.",
+        "operationalAddressTitle": "Alamat Operasional",
+        "area": "Kawasan Pelabuhan Bojonegara",
+        "region": "Serang, Banten",
+        "openMaps": "Buka di Google Maps",
+        "accessPoints": [
+          {
+            "title": "Akses Laut",
+            "desc": "Berada di pesisir Selat Sunda, mendukung bongkar muat tongkang dan distribusi antar-pulau."
+          },
+          {
+            "title": "Akses Darat",
+            "desc": "Terhubung dengan jaringan jalan lintas menuju kawasan industri Cilegon dan sekitarnya."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Siap Memenuhi Kebutuhan Energi Industri Anda",
+        "description": "Diskusikan kebutuhan batu bara, biomassa, dan stockpile Anda langsung dengan tim kami.",
+        "button": "Hubungi via WhatsApp"
+      }
+    },
+    "products": {
+      "hero": {
+        "titlePart1": "Pasokan Komoditas",
+        "titleHighlight": "Energi Berkualitas",
+        "titlePart2": "untuk Kebutuhan Industri",
+        "description": "Penyediaan batu bara bersertifikat dan ber-SKAB resmi, biomassa cangkang sawit (PKS), wood chip, serta batu split dengan spesifikasi teruji dan pasokan berkesinambungan.",
+        "rfqButton": "Minta Penawaran (RFQ)",
+        "specsButton": "Lihat Spesifikasi Produk"
+      },
+      "items": {
+        "coal": {
+          "tag": "Komoditas Utama",
+          "name": "Batu Bara",
+          "alt": "Steam / Thermal Coal",
+          "segment": "PLTU, pabrik tekstil, smelter, pabrik semen, industri kimia dan kertas",
+          "description": "Batu bara untuk kebutuhan pembangkit dan industri, bersumber dari tambang berizin.",
+          "specsHeader": "Parameter spesifikasi",
+          "specs": [
+            "Kalori GAR / ADB",
+            "Total Moisture (TM)",
+            "Inherent Moisture (IM)",
+            "Ash Content",
+            "Total Sulfur",
+            "Ukuran 0-50 mm / crushed",
+            "Asal tambang"
+          ],
+          "note": "Setiap pengiriman batu bara dilengkapi SKAB resmi dari pemegang IUP-OP.",
+          "cta": "Minta COA & Harga Batu Bara"
+        },
+        "pks": {
+          "name": "Cangkang Sawit",
+          "alt": "Palm Kernel Shell (PKS)",
+          "segment": "Boiler biomassa industri, program co-firing PLTU, ekspor energi hijau",
+          "description": "Bahan bakar biomassa untuk boiler industri dan program co-firing pembangkit.",
+          "specsHeader": "Parameter spesifikasi",
+          "specs": [
+            "Nilai kalor (kcal/kg)",
+            "Moisture",
+            "Ash",
+            "Kemurnian / bebas kontaminan",
+            "Kapasitas suplai bulanan"
+          ],
+          "cta": "Minta Penawaran Cangkang Sawit"
+        },
+        "woodChip": {
+          "name": "Wood Chip",
+          "alt": "Serpihan Kayu Industri",
+          "segment": "Pabrik pulp dan kertas, boiler biomassa, industri pengolahan kayu",
+          "description": "Serpihan kayu untuk pabrik pulp dan kertas serta boiler biomassa.",
+          "specsHeader": "Parameter spesifikasi",
+          "specs": [
+            "Chip size distribution",
+            "Moisture content",
+            "Nilai kalor",
+            "Jenis kayu",
+            "Metode pengiriman (curah / jumbo bag)"
+          ],
+          "cta": "Minta Penawaran Wood Chip"
+        },
+        "stone": {
+          "name": "Batu Split",
+          "alt": "Crushed Stone Aggregate",
+          "segment": "Kontraktor infrastruktur, batching plant beton, proyek jalan dan pelabuhan",
+          "description": "Agregat untuk batching plant, proyek jalan, dan infrastruktur pelabuhan.",
+          "specsHeader": "Parameter spesifikasi",
+          "specs": [
+            "Ukuran fraksi (Split 1-2, Split 2-3, abu batu, basecourse)",
+            "Abrasi",
+            "Kapasitas pengiriman truk / tongkang"
+          ],
+          "cta": "Minta Penawaran Batu Split"
+        }
+      },
+      "cta": {
+        "tag": "Konsultasi & Pengadaan",
+        "title": "Butuh Pasokan Komoditas atau Spesifikasi Khusus?",
+        "description": "Sampaikan kebutuhan tonase per bulan, spesifikasi kalori (GAR/ADB), biomassa (PKS/wood chip), atau agregat batu split Anda. Tim kami siap mengirimkan Certificate of Analysis (COA) dan penawaran harga terbaik.",
+        "button": "Konsultasi via WhatsApp"
+      }
+    },
+    "services": {
+      "hero": {
+        "titlePart1": "Layanan Manajemen",
+        "titleHighlight": "Stockpile Terpadu",
+        "titlePart2": "& Terpercaya",
+        "description": "Fasilitas stockpile strategis di jalur Bojonegara dengan jembatan timbang, alat berat modern, kontrol kualitas ketat, serta pengawasan dan mitigasi swa-bakar 24/7.",
+        "consultButton": "Konsultasi Layanan",
+        "detailsButton": "Detail Fasilitas"
+      },
+      "tabs": {
+        "stockpile": "Stockpiling Services",
+        "coal": "Jual Beli Batu Bara"
+      },
+      "stockpile": {
+        "tag": "Fasilitas",
+        "title": "Stockpile Bojonegara, Banten",
+        "description": "Fasilitas berada di Jl. Raya Bojonegara No. 04 Kp. Pangsoran RT.002/RW.007, Desa Bojonegara, Kecamatan Bojonegara, Kabupaten Serang, Banten 42454.",
+        "facts": [
+          {
+            "term": "Akses",
+            "value": "Jalur distribusi utama, pelabuhan bongkar-muat, dan jalan hauling."
+          },
+          {
+            "term": "Pengawasan",
+            "value": "Pengawasan 24/7 dan manajemen risiko swa-bakar."
+          },
+          {
+            "term": "Peralatan",
+            "value": "Jembatan timbang, wheel loader L20, excavator, dan alat penunjang."
+          },
+          {
+            "term": "Komoditas",
+            "value": "Batu bara dari tambang berizin di Indonesia."
+          }
+        ],
+        "advantagesTitle": "Lima keunggulan fasilitas",
+        "advantagesSubtitle": "Setiap bagian fasilitas dirancang untuk menjaga mutu material dan kelancaran alur distribusi.",
+        "advantages": [
+          {
+            "title": "Kapasitas Besar",
+            "description": "Area penyimpanan luas untuk menampung volume tinggi dan kebutuhan stok jangka panjang."
+          },
+          {
+            "title": "Kontrol Kualitas Ketat",
+            "description": "Monitoring berkala untuk menjaga stabilitas kalori batu bara dan meminimalkan degradasi material selama penyimpanan."
+          },
+          {
+            "title": "Lokasi Strategis di Bojonegara",
+            "description": "Berada di jalur pelabuhan Bojonegara dengan akses ke jalur distribusi utama, pelabuhan bongkar-muat, dan jalan hauling."
+          },
+          {
+            "title": "Keamanan 24/7 dan Mitigasi Swa-Bakar",
+            "description": "Pengawasan sepanjang waktu serta manajemen risiko self-combustion selama material berada di area penyimpanan."
+          },
+          {
+            "title": "Infrastruktur dan Alat Berat Lengkap",
+            "description": "Jembatan timbang (weighbridge), wheel loader L20, excavator, dan peralatan penunjang produksi batu bara."
+          }
+        ],
+        "workflowTitle": "Alur operasional",
+        "workflowSubtitle": "Setiap kiriman melewati empat tahap yang sama, dari kedatangan hingga siap didistribusikan.",
+        "steps": [
+          {
+            "label": "Unloading",
+            "detail": "Bongkar muat material"
+          },
+          {
+            "label": "Weighing",
+            "detail": "Penimbangan di jembatan timbang"
+          },
+          {
+            "label": "Stockpiling & QC",
+            "detail": "Penyimpanan dan kontrol kualitas"
+          },
+          {
+            "label": "Loading / Dispatch",
+            "detail": "Pemuatan dan pengiriman"
+          }
+        ],
+        "cta": {
+          "locationTitle": "Lokasi fasilitas",
+          "address": "Jl. Raya Bojonegara No. 04 Kp. Pangsoran RT.002/RW.007\nDesa Bojonegara, Kecamatan Bojonegara\nKabupaten Serang, Banten 42454",
+          "openMaps": "Buka di Google Maps",
+          "cardTitle": "Butuh ruang penyimpanan atau stok siap kirim?",
+          "cardDesc": "Sampaikan kebutuhan volume, jadwal, dan spesifikasi komoditas Anda. Tim kami akan menyesuaikan skema layanan stockpile.",
+          "button": "Hubungi via WhatsApp",
+          "hotline": "Hotline 0895-0483-6618"
+        }
+      },
+      "coal": {
+        "tag": "Komoditas",
+        "title": "Batu Bara — Steam & Thermal Coal",
+        "description": "Penyediaan batu bara untuk kebutuhan pembangkit dan industri — PLTU, pabrik tekstil, smelter, pabrik semen, industri kimia, pabrik ban, pabrik hebel, pabrik baja, dan kertas, bersumber dari tambang berizin di Indonesia.",
+        "facts": [
+          {
+            "term": "Asal Tambang",
+            "value": "Tambang berizin (IUP-OP) di Jambi, Sumatera, dan Kalimantan."
+          },
+          {
+            "term": "Dokumen",
+            "value": "Setiap pengiriman dilengkapi SKAB resmi dari pemegang IUP-OP."
+          },
+          {
+            "term": "Spesifikasi",
+            "value": "Kalori GAR/ADB, Moisture, Ash Content, Total Sulfur, ukuran 0–50 mm."
+          },
+          {
+            "term": "Target Pasar",
+            "value": "Industri domestik, Asia Tenggara, dan pasar ekspor global."
+          }
+        ],
+        "advantagesTitle": "Lima keunggulan layanan",
+        "advantagesSubtitle": "Proses jual beli yang transparan, berdokumen resmi, dan didukung jaringan pasokan yang kuat.",
+        "advantages": [
+          {
+            "title": "Sumber dari Tambang Berizin",
+            "description": "Batu bara bersumber langsung dari mitra tambang pemegang IUP-OP yang telah terverifikasi, termasuk PT. Anugerah Mining Persada di Kabupaten Bungo, Jambi."
+          },
+          {
+            "title": "Dilengkapi SKAB Resmi",
+            "description": "Setiap pengiriman disertai Surat Keterangan Asal Batubara (SKAB) resmi sebagai jaminan legalitas rantai pasok dari tambang ke tangan pembeli."
+          },
+          {
+            "title": "Spesifikasi Teknis Tersedia",
+            "description": "COA (Certificate of Analysis) tersedia atas permintaan, mencakup parameter kalori GAR/ADB, moisture, ash content, total sulfur, dan ukuran butir."
+          },
+          {
+            "title": "Pasokan Berkesinambungan",
+            "description": "Didukung jaringan tambang dan fasilitas stockpile Bojonegara, pasokan dapat dijaga konsistensinya untuk kebutuhan industri jangka panjang."
+          },
+          {
+            "title": "Fleksibel untuk Ekspor",
+            "description": "Memiliki akses distribusi ke pelabuhan Bojonegara untuk pengiriman ke pasar Asia Tenggara dan internasional sesuai permintaan pembeli."
+          }
+        ],
+        "workflowTitle": "Alur transaksi",
+        "workflowSubtitle": "Proses pembelian yang terstruktur dari permintaan hingga pengiriman berdokumen resmi.",
+        "steps": [
+          {
+            "label": "Permintaan & Spesifikasi",
+            "detail": "Buyer menyampaikan kebutuhan kalori, volume, dan tujuan pengiriman"
+          },
+          {
+            "label": "COA & Penawaran Harga",
+            "detail": "Tim kami mengirimkan Certificate of Analysis dan penawaran harga"
+          },
+          {
+            "label": "Konfirmasi & Kontrak",
+            "detail": "Kesepakatan volume, jadwal, dan skema pembayaran"
+          },
+          {
+            "label": "Pengiriman & SKAB",
+            "detail": "Batu bara dikirim dengan SKAB resmi dari pemegang IUP-OP"
+          }
+        ],
+        "cta": {
+          "locationTitle": "Distribusi & Pengiriman",
+          "description": "Pengiriman batu bara dapat dilakukan melalui jalur darat (truk) maupun tongkang melalui pelabuhan Bojonegara, Banten. Kami mendukung distribusi ke seluruh wilayah industri domestik, serta siap mengakomodasi kebutuhan ekspor ke Asia Tenggara dan pasar internasional.",
+          "cardTitle": "Butuh batu bara dengan spesifikasi tertentu?",
+          "cardDesc": "Sampaikan spesifikasi kalori, estimasi tonase, dan tujuan pengiriman. Tim kami akan mengirimkan COA dan penawaran harga.",
+          "button": "Hubungi via WhatsApp",
+          "hotline": "Hotline 0895-0483-6618"
+        }
+      }
+    },
+    "solutions": {
+      "hero": {
+        "titlePart1": "Solusi Efisiensi",
+        "titleHighlight": "Rantai Pasok",
+        "titlePart2": "Berbagai Sektor Industri",
+        "description": "Menjawab tantangan kontinuitas energi untuk PLTU, pabrik semen, tekstil, smelter, hingga industri manufaktur dengan integrasi komoditas dan logistik andal.",
+        "consultButton": "Konsultasi Solusi Industri",
+        "exploreButton": "Pelajari Sektor Industri"
+      },
+      "featured": {
+        "tag": "Sektor prioritas",
+        "sector": "Pembangkit Listrik & Energi",
+        "segment": "PLTU dan industri energi",
+        "description": "Pasokan batu bara dari tambang berizin untuk kebutuhan pembangkit, dengan opsi cangkang sawit untuk program co-firing. Setiap pengiriman batu bara dilengkapi SKAB resmi dari pemegang IUP-OP.",
+        "button": "Lihat Layanan Stockpile",
+        "needsTag": "Kebutuhan yang dibantu",
+        "needs": [
+          "Pasokan batu bara yang stabil untuk kebutuhan operasi pembangkit.",
+          "Opsi biomassa untuk program co-firing dan uji campuran bahan bakar.",
+          "Titik penyimpanan sementara sebelum material didistribusikan."
+        ],
+        "commoditiesTag": "Komoditas terkait",
+        "products": ["Batu Bara", "Cangkang Sawit", "Stockpile Bojonegara"]
+      },
+      "sectors": {
+        "headerTitle": "Sektor lain yang dilayani",
+        "headerSubtitle": "Pilih sektor yang paling dekat dengan operasi Anda. Komoditas dan spesifikasi akan dibahas pada tahap permintaan penawaran.",
+        "items": [
+          {
+            "sector": "Manufaktur & Industri Berat",
+            "segment": "Tekstil, semen, kimia, kertas, dan smelter",
+            "description": "Batu bara untuk kebutuhan boiler, kiln, dan proses produksi. Spesifikasi kalori, moisture, ash, dan sulfur dikonfirmasi per pengiriman melalui COA.",
+            "products": ["Batu Bara"],
+            "cta": "Diskusikan kebutuhan Manufaktur & Industri Berat"
+          },
+          {
+            "sector": "Biomassa & Co-firing",
+            "segment": "Boiler biomassa industri dan program co-firing PLTU",
+            "description": "Cangkang sawit dan wood chip sebagai bahan bakar biomassa. Parameter nilai kalor, moisture, dan kapasitas suplai dibahas langsung saat permintaan penawaran.",
+            "products": ["Cangkang Sawit", "Wood Chip"],
+            "cta": "Diskusikan kebutuhan Biomassa & Co-firing"
+          },
+          {
+            "sector": "Pulp, Kertas & Pengolahan Kayu",
+            "segment": "Pabrik pulp dan kertas, boiler biomassa, industri pengolahan kayu",
+            "description": "Wood chip untuk kebutuhan pabrik pulp dan kertas, dengan batu bara sebagai opsi bahan bakar pendukung operasi.",
+            "products": ["Wood Chip", "Batu Bara"],
+            "cta": "Diskusikan kebutuhan Pulp, Kertas & Pengolahan Kayu"
+          },
+          {
+            "sector": "Konstruksi & Infrastruktur",
+            "segment": "Kontraktor infrastruktur, batching plant, proyek jalan dan pelabuhan",
+            "description": "Batu split dalam beberapa fraksi untuk batching plant beton, pekerjaan jalan, dan proyek pelabuhan, dengan pengiriman truk atau tongkang sesuai kebutuhan.",
+            "products": ["Batu Split"],
+            "cta": "Diskusikan kebutuhan Konstruksi & Infrastruktur"
+          }
+        ]
+      },
+      "cta": {
+        "title": "Belum yakin komoditas mana yang cocok?",
+        "description": "Sampaikan sektor, volume per bulan, dan lokasi tujuan pengiriman. Tim kami akan mencocokkan komoditas, spesifikasi, dan jalur distribusi yang sesuai.",
+        "button": "Konsultasi via WhatsApp"
+      }
+    },
+    "legal": {
+      "comingSoon": {
+        "title": "Perizinan",
+        "description": "Halaman ini belum tersedia. Konten Perizinan sedang disiapkan.",
+        "backButton": "Kembali ke Beranda"
+      },
+      "hero": {
+        "titlePart1": "Komitmen terhadap",
+        "titleHighlight": "Legalitas & Kepatuhan",
+        "titlePart2": "Regulasi",
+        "description": "Seluruh operasional perdagangan dan stockpile PT. Coal Global Energy beroperasi secara transparan dengan perizinan resmi, SKAB valid, dan kepatuhan penuh terhadap regulasi pemerintah.",
+        "verifyButton": "Verifikasi Dokumen / Hubungi Kami",
+        "downloadSummaryButton": "Unduh Ringkasan Legalitas"
+      }
+    }
+  },
+  "en": {
+    "common": {
+      "companyName": "PT. Coal Global Energy",
+      "buttons": {
+        "rfq": "Request a Quote (RFQ)",
+        "downloadCompanyProfile": "Download Company Profile PDF",
+        "consultWhatsApp": "Consult via WhatsApp",
+        "contactWhatsApp": "Contact via WhatsApp",
+        "viewSpecs": "View Product Specifications",
+        "exploreStockpile": "View Stockpile Services",
+        "exploreSectors": "Explore Industry Sectors",
+        "consultSolutions": "Industrial Solutions Consultation",
+        "serviceConsultation": "Service Consultation",
+        "facilityDetails": "Facility Details",
+        "backToHome": "Back to Home",
+        "openGoogleMaps": "Open in Google Maps",
+        "verifyDocs": "Verify Documents / Contact Us",
+        "downloadLegalSummary": "Download Compliance Summary"
+      },
+      "labels": {
+        "trustedByLeaders": "Trusted by Industrial Leaders & Key Partners",
+        "operationalAddress": "Operational Address",
+        "specParameters": "Specification Parameters",
+        "coreCommodity": "Core Commodity",
+        "facility": "Facility",
+        "commodity": "Commodity",
+        "stage": "Stage",
+        "hotline": "Hotline",
+        "hotlineNumber": "0895-0483-6618",
+        "email": "coalglobalenergy@gmail.com"
+      }
+    },
+    "navbar": {
+      "brand": "PT. Coal Global Energy",
+      "items": {
+        "products": "Products",
+        "services": "Services",
+        "solutions": "Solutions",
+        "legal": "Permits & Legal",
+        "news": "News"
+      },
+      "cta": "Contacts"
+    },
+    "footer": {
+      "companyDescription": "Provision of strategic stockpile facilities and reliable coal distribution along the Bojonegara port corridor.",
+      "navigationTitle": "Navigation",
+      "contactTitle": "Contact",
+      "locationTitle": "Location",
+      "copyright": "© PT. Coal Global Energy. All rights reserved."
+    },
+    "home": {
+      "hero": {
+        "titlePart1": "Trusted Partner in",
+        "titleHighlight1": "Coal Supply Chains",
+        "titlePart2": "&",
+        "titleHighlight2": "Strategic Stockpile Facilities",
+        "titlePart3": "from Domestic Scale to Export",
+        "description": "PT. Coal Global Energy provides premium-grade coal supply from certified Indonesian mines and massive-capacity stockpiling services at the strategic Bojonegara port hub, Banten, serving domestic industrial demand and Southeast Asian & global export markets.",
+        "rfqButton": "Request a Quote (RFQ)",
+        "downloadPdfButton": "Download Company Profile PDF"
+      },
+      "about": {
+        "badge": "Company Profile & Commitment",
+        "title": "Connecting Trusted Mines with Future Energy Needs",
+        "lead": "PT. Coal Global Energy is a national private enterprise engaged in the wholesale of solid energy fuels, biomass commodities, and the operation of modern, massive-capacity stockpiling facilities at the Bojonegara port hub, Banten.",
+        "storyTag": "About PT. Coal Global Energy",
+        "storyTitle": "Integrated Supply Chain Pillars with High Governance Standards",
+        "storyParagraph1": "Founded on uncompromising professionalism, we bridge reliable supplies of quality coal commodities directly from officially licensed mining concessions (IUP-OP) across Indonesia.",
+        "storyParagraph2": "Through direct ownership and operation of our stockpiling services in Bojonegara, we guarantee supply consistency, routine quality assurance, self-combustion mitigation, and expedited logistics by both sea barge and overland fleet.",
+        "points": {
+          "maritime": {
+            "title": "Strategic Maritime Hub",
+            "desc": "Direct jetty & barge access across the Sunda Strait"
+          },
+          "export": {
+            "title": "Export Ready",
+            "desc": "Engineered to satisfy Southeast Asian and global market standards"
+          }
+        },
+        "strategicDirectionTag": "Strategic Direction",
+        "tabs": {
+          "vision": "Vision",
+          "mission": "5 Mission Pillars"
+        },
+        "vision": {
+          "title": "Company Vision",
+          "quote": "To be a trusted, highly competitive coal sales and trading enterprise committed to quality, integrity, and sustainability across domestic and international markets.",
+          "note": "Our core focus is delivering a steady supply of secure energy fuel that complies strictly with power plant and industrial specifications on a sustainable basis."
+        },
+        "mission": {
+          "title": "5 Operational & Partnership Commitments:",
+          "items": [
+            {
+              "title": "Superior Product Quality",
+              "desc": "Supplying premium coal rigorously verified for calorific value and technical parameters to meet client boiler specifications."
+            },
+            {
+              "title": "Long-Term Partnerships",
+              "desc": "Fostering sustainable synergies with clients and mine partners grounded in transparency and mutual integrity."
+            },
+            {
+              "title": "Punctual Supply Chain",
+              "desc": "Measured, secure, and cost-efficient sea & land logistics via strategic Bojonegara port access."
+            },
+            {
+              "title": "Environmental Stewardship",
+              "desc": "Managing energy commodities with disciplined self-combustion mitigation and full environmental compliance."
+            },
+            {
+              "title": "Human Capital & Integrity",
+              "desc": "Backed by seasoned operational teams and technical specialists dedicated to client satisfaction 24/7."
+            }
+          ]
+        },
+        "trustedByTitle": "Trusted by Industrial Leaders & Key Partners"
+      },
+      "gallery": {
+        "titlePart1": "COMPANY",
+        "titlePart2": "GALLERY",
+        "description": "Operational Documentation of PT Coal Global Energy",
+        "labels": {
+          "loadingCoal": "Loading Coal",
+          "unloadingCoal": "Unloading Coal",
+          "office": "Office",
+          "stockpile": "Stockpile"
+        }
+      },
+      "location": {
+        "titlePart1": "Strategic",
+        "titleHighlight": "Location",
+        "titlePart2": "along the Bojonegara Distribution Corridor",
+        "description": "PT. Coal Global Energy's stockpile facility is situated in the Bojonegara port district, Serang, Banten, on the strategic Sunda Strait shipping lane.",
+        "operationalAddressTitle": "Operational Address",
+        "area": "Bojonegara Port District",
+        "region": "Serang, Banten",
+        "openMaps": "Open in Google Maps",
+        "accessPoints": [
+          {
+            "title": "Maritime Access",
+            "desc": "Positioned along the Sunda Strait coast, supporting barge loading/unloading and inter-island shipping."
+          },
+          {
+            "title": "Overland Logistics Access",
+            "desc": "Connected to major highway networks serving Cilegon industrial zones and surrounding regions."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready to Power Your Industrial Energy Needs",
+        "description": "Discuss your coal, biomass, and stockpiling requirements directly with our team.",
+        "button": "Contact via WhatsApp"
+      }
+    },
+    "products": {
+      "hero": {
+        "titlePart1": "Premium",
+        "titleHighlight": "Energy Commodity Supplies",
+        "titlePart2": "for Industrial Demands",
+        "description": "Certified thermal coal with official SKAB licensing, palm kernel shell (PKS) biomass, wood chips, and crushed stone aggregate with verified specifications and sustainable supply.",
+        "rfqButton": "Request a Quote (RFQ)",
+        "specsButton": "View Product Specifications"
+      },
+      "items": {
+        "coal": {
+          "tag": "Core Commodity",
+          "name": "Thermal Coal",
+          "alt": "Steam / Thermal Coal",
+          "segment": "Power plants, textile mills, smelters, cement plants, chemical, and paper industries",
+          "description": "High-grade coal for power generation and industrial boilers, sourced directly from licensed mining concessions.",
+          "specsHeader": "Specification Parameters",
+          "specs": [
+            "Calorific Value (GAR / ADB)",
+            "Total Moisture (TM)",
+            "Inherent Moisture (IM)",
+            "Ash Content",
+            "Total Sulfur",
+            "Size 0-50 mm / crushed",
+            "Mine Origin"
+          ],
+          "note": "Every coal shipment is accompanied by official SKAB documentation from licensed IUP-OP holders.",
+          "cta": "Request COA & Coal Quotation"
+        },
+        "pks": {
+          "name": "Palm Kernel Shell (PKS)",
+          "alt": "Palm Kernel Shell (PKS)",
+          "segment": "Industrial biomass boilers, power plant co-firing programs, and green energy export",
+          "description": "Eco-friendly biomass fuel for industrial boiler systems and power plant co-firing initiatives.",
+          "specsHeader": "Specification Parameters",
+          "specs": [
+            "Calorific Value (kcal/kg)",
+            "Moisture Content",
+            "Ash Content",
+            "Purity / Low Contaminants",
+            "Monthly Supply Capacity"
+          ],
+          "cta": "Request PKS Quotation"
+        },
+        "woodChip": {
+          "name": "Wood Chips",
+          "alt": "Industrial Wood Chips",
+          "segment": "Pulp & paper mills, biomass boilers, wood processing industries",
+          "description": "Uniform wood chips engineered for pulp & paper production and biomass boiler feed.",
+          "specsHeader": "Specification Parameters",
+          "specs": [
+            "Chip size distribution",
+            "Moisture content",
+            "Calorific value",
+            "Wood species",
+            "Delivery method (Bulk / Jumbo Bag)"
+          ],
+          "cta": "Request Wood Chip Quotation"
+        },
+        "stone": {
+          "name": "Crushed Stone Aggregate",
+          "alt": "Crushed Stone Aggregate",
+          "segment": "Infrastructure contractors, concrete batching plants, road & port construction",
+          "description": "High-durability crushed aggregates for concrete batching, civil works, and port infrastructure.",
+          "specsHeader": "Specification Parameters",
+          "specs": [
+            "Grading Fractions (Split 1-2, 2-3, Stone Dust, Base Course)",
+            "Abrasion Resistance",
+            "Truck / Barge Delivery Capacity"
+          ],
+          "cta": "Request Crushed Stone Quotation"
+        }
+      },
+      "cta": {
+        "tag": "Consultation & Procurement",
+        "title": "Need Custom Specifications or Bulk Commodity Supply?",
+        "description": "Share your monthly tonnage requirements, calorific targets (GAR/ADB), biomass (PKS/wood chips), or crushed stone needs. Our team will provide Certificates of Analysis (COA) and competitive commercial offers.",
+        "button": "Consult via WhatsApp"
+      }
+    },
+    "services": {
+      "hero": {
+        "titlePart1": "Integrated & Trusted",
+        "titleHighlight": "Stockpile Management",
+        "titlePart2": "Services",
+        "description": "Strategic stockpile facility in the Bojonegara corridor with certified weighbridges, modern heavy machinery, strict quality control, and 24/7 self-combustion mitigation.",
+        "consultButton": "Service Consultation",
+        "detailsButton": "Facility Details"
+      },
+      "tabs": {
+        "stockpile": "Stockpiling Services",
+        "coal": "Coal Trading & Supply"
+      },
+      "stockpile": {
+        "tag": "Facility",
+        "title": "Stockpile Bojonegara, Banten",
+        "description": "Facility located at Jl. Raya Bojonegara No. 04 Kp. Pangsoran RT.002/RW.007, Bojonegara Village, Bojonegara District, Serang Regency, Banten 42454.",
+        "facts": [
+          {
+            "term": "Access",
+            "value": "Main distribution route, bulk sea terminals, and heavy hauling roads."
+          },
+          {
+            "term": "Surveillance",
+            "value": "24/7 on-site monitoring and self-combustion risk management."
+          },
+          {
+            "term": "Equipment",
+            "value": "Certified weighbridges, L20 wheel loaders, excavators, and auxiliary machinery."
+          },
+          {
+            "term": "Commodities",
+            "value": "Thermal coal from verified licensed concessions across Indonesia."
+          }
+        ],
+        "advantagesTitle": "Five Key Facility Advantages",
+        "advantagesSubtitle": "Every aspect of the facility is engineered to preserve material quality and maintain seamless dispatch.",
+        "advantages": [
+          {
+            "title": "High Capacity Storage",
+            "description": "Expansive yard area to accommodate heavy throughput volumes and strategic long-term reserves."
+          },
+          {
+            "title": "Strict Quality Control",
+            "description": "Regular sampling and thermal monitoring to preserve calorific value and minimize material degradation."
+          },
+          {
+            "title": "Strategic Bojonegara Location",
+            "description": "Positioned at the Bojonegara port junction with direct access to shipping wharves and heavy haul routes."
+          },
+          {
+            "title": "24/7 Security & Self-Combustion Mitigation",
+            "description": "Continuous thermal surveillance, compaction protocols, and active fire risk mitigation."
+          },
+          {
+            "title": "Comprehensive Heavy Machinery",
+            "description": "Calibrated weighbridges, L20 wheel loaders, heavy excavators, and operational support units."
+          }
+        ],
+        "workflowTitle": "Operational Workflow",
+        "workflowSubtitle": "Every shipment passes through four disciplined phases, from arrival to scheduled dispatch.",
+        "steps": [
+          {
+            "label": "Unloading",
+            "detail": "Bulk vessel & truck unloading"
+          },
+          {
+            "label": "Weighing",
+            "detail": "Calibrated weighbridge tally"
+          },
+          {
+            "label": "Stockpiling & QC",
+            "detail": "Stockpile storage and quality control"
+          },
+          {
+            "label": "Loading / Dispatch",
+            "detail": "Barge loading and overland dispatch"
+          }
+        ],
+        "cta": {
+          "locationTitle": "Facility Location",
+          "address": "Jl. Raya Bojonegara No. 04 Kp. Pangsoran RT.002/RW.007\nBojonegara Village, Bojonegara District\nSerang Regency, Banten 42454",
+          "openMaps": "Open in Google Maps",
+          "cardTitle": "Need Storage Capacity or Ready Coal Supply?",
+          "cardDesc": "Tell us your volume needs, scheduling, and commodity parameters. Our team will tailor a custom stockpile service agreement.",
+          "button": "Contact via WhatsApp",
+          "hotline": "Hotline 0895-0483-6618"
+        }
+      },
+      "coal": {
+        "tag": "Commodity",
+        "title": "Coal — Steam & Thermal Coal",
+        "description": "Coal supply for power utilities and heavy industries — thermal power plants, textiles, smelters, cement, chemicals, tires, autoclaved aerated concrete (AAC), steel, and paper, sourced from licensed mines in Indonesia.",
+        "facts": [
+          {
+            "term": "Mine Origin",
+            "value": "Licensed mines (IUP-OP) across Jambi, Sumatra, and Kalimantan."
+          },
+          {
+            "term": "Documentation",
+            "value": "Every shipment is covered by official SKAB certificates from IUP-OP holders."
+          },
+          {
+            "term": "Specifications",
+            "value": "GAR/ADB calorific value, moisture, ash content, total sulfur, 0-50 mm size."
+          },
+          {
+            "term": "Market Target",
+            "value": "Domestic industrial plants, Southeast Asia, and global export destinations."
+          }
+        ],
+        "advantagesTitle": "Five Key Service Advantages",
+        "advantagesSubtitle": "Transparent trade execution, verified legal documentation, and robust supply partnerships.",
+        "advantages": [
+          {
+            "title": "Sourced from Licensed Concessions",
+            "description": "Coal sourced directly from verified IUP-OP mining partners, including PT Anugerah Mining Persada in Bungo Regency, Jambi."
+          },
+          {
+            "title": "Accompanied by Official SKAB",
+            "description": "Each consignment is certified by official Certificate of Coal Origin (SKAB) guaranteeing legal compliance from mine pit to destination."
+          },
+          {
+            "title": "Verified Technical Specifications",
+            "description": "Official Certificate of Analysis (COA) provided upon request, covering GAR/ADB calorific value, moisture, ash, total sulfur, and grain sizing."
+          },
+          {
+            "title": "Sustainable Long-Term Supply",
+            "description": "Backed by extensive mining partnerships and the Bojonegara stockpile hub, supply continuity is assured for long-term industrial contracts."
+          },
+          {
+            "title": "Export-Ready Flexibility",
+            "description": "Equipped with maritime distribution via Bojonegara port for seamless shipment to Southeast Asian and global international destinations."
+          }
+        ],
+        "workflowTitle": "Transaction Process",
+        "workflowSubtitle": "Structured procurement procedure from initial inquiry to fully documented cargo dispatch.",
+        "steps": [
+          {
+            "label": "Inquiry & Specifications",
+            "detail": "Buyer specifies calorific requirements, target volume, and delivery destination"
+          },
+          {
+            "label": "COA & Price Quotation",
+            "detail": "Our team submits official Certificate of Analysis and competitive commercial offer"
+          },
+          {
+            "label": "Confirmation & Contract",
+            "detail": "Agreement on volume commitments, delivery schedule, and payment terms"
+          },
+          {
+            "label": "Dispatch & SKAB",
+            "detail": "Coal dispatched accompanied by official SKAB origin certificates"
+          }
+        ],
+        "cta": {
+          "locationTitle": "Distribution & Logistics",
+          "description": "Coal distribution is conducted via road fleet (dump trucks) and maritime barges from Bojonegara Port, Banten. We support shipments across all domestic industrial belts and fulfill international export consignments to Southeast Asia and global markets.",
+          "cardTitle": "Need Coal with Specific Parameters?",
+          "cardDesc": "Provide your calorific specs, estimated tonnage, and discharge destination. Our team will promptly submit a COA and quotation.",
+          "button": "Contact via WhatsApp",
+          "hotline": "Hotline 0895-0483-6618"
+        }
+      }
+    },
+    "solutions": {
+      "hero": {
+        "titlePart1": "Supply Chain",
+        "titleHighlight": "Efficiency Solutions",
+        "titlePart2": "for Core Industrial Sectors",
+        "description": "Addressing energy continuity challenges for power utilities, cement, textiles, smelters, and heavy manufacturing through integrated commodity supply and dependable logistics.",
+        "consultButton": "Industrial Solutions Consultation",
+        "exploreButton": "Explore Industry Sectors"
+      },
+      "featured": {
+        "tag": "Priority Sector",
+        "sector": "Power Generation & Utilities",
+        "segment": "Thermal power stations and energy utilities",
+        "description": "Consistent thermal coal supply from licensed mines for power generation, complemented by palm kernel shell options for co-firing programs. Every shipment includes official SKAB documentation.",
+        "button": "View Stockpile Services",
+        "needsTag": "Operational Needs Addressed",
+        "needs": [
+          "Stable thermal coal feed to safeguard uninterrupted power station operations.",
+          "Sustainable biomass alternatives for co-firing initiatives and fuel blending trials.",
+          "Strategic interim storage buffer prior to final plant distribution."
+        ],
+        "commoditiesTag": "Related Commodities",
+        "products": ["Thermal Coal", "Palm Kernel Shell (PKS)", "Bojonegara Stockpile"]
+      },
+      "sectors": {
+        "headerTitle": "Other Industrial Sectors Served",
+        "headerSubtitle": "Select the sector aligning with your plant operations. Precise parameters and volumes will be finalized during quotation.",
+        "items": [
+          {
+            "sector": "Heavy Manufacturing & Industry",
+            "segment": "Textiles, cement, chemicals, paper mills, and metal smelters",
+            "description": "Thermal coal for industrial boilers, rotary kilns, and process heat. Specifications for calories, moisture, ash, and sulfur confirmed per delivery via COA.",
+            "products": ["Thermal Coal"],
+            "cta": "Discuss Heavy Manufacturing Needs"
+          },
+          {
+            "sector": "Biomass & Co-Firing",
+            "segment": "Industrial biomass boilers and utility co-firing programs",
+            "description": "Palm kernel shells and wood chips for low-carbon thermal energy. Heating value, moisture, and bulk capacity tailored to plant specifications.",
+            "products": ["Palm Kernel Shells", "Wood Chips"],
+            "cta": "Discuss Biomass & Co-Firing Needs"
+          },
+          {
+            "sector": "Pulp, Paper & Wood Processing",
+            "segment": "Pulp & paper manufacturing, biomass combustion plants, wood processing",
+            "description": "Industrial wood chips meeting paper manufacturing standards, with thermal coal supply options to sustain continuous boiler steam.",
+            "products": ["Wood Chips", "Thermal Coal"],
+            "cta": "Discuss Pulp, Paper & Wood Needs"
+          },
+          {
+            "sector": "Construction & Civil Infrastructure",
+            "segment": "Infrastructure contractors, concrete batching plants, road & maritime civil works",
+            "description": "Graded crushed aggregates for concrete batching, heavy highway paving, and port civil engineering, dispatched via road fleet or chartered barge.",
+            "products": ["Crushed Stone Aggregate"],
+            "cta": "Discuss Construction & Infrastructure Needs"
+          }
+        ]
+      },
+      "cta": {
+        "title": "Uncertain Which Commodity Best Fits Your Facility?",
+        "description": "Share your operational sector, estimated monthly tonnage, and receiving port or site. Our logistics and fuel specialists will recommend the ideal commodity grade and delivery plan.",
+        "button": "Consult via WhatsApp"
+      }
+    },
+    "legal": {
+      "comingSoon": {
+        "title": "Permits & Compliance",
+        "description": "This page is currently being prepared. Licensing and compliance documents will be published shortly.",
+        "backButton": "Back to Home"
+      },
+      "hero": {
+        "titlePart1": "Commitment to",
+        "titleHighlight": "Legality & Regulatory",
+        "titlePart2": "Compliance",
+        "description": "All trading, stockpile, and distribution operations of PT Coal Global Energy operate with complete transparency, verified licensing, official SKAB permits, and strict adherence to government regulations.",
+        "verifyButton": "Verify Documentation / Contact Us",
+        "downloadSummaryButton": "Download Compliance Summary"
+      }
+    }
+  }
+}
