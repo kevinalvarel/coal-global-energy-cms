@@ -467,6 +467,15 @@
         "description": "Halaman ini belum tersedia. Konten Perizinan sedang disiapkan.",
         "backButton": "Kembali ke Beranda"
       },
+      "inquiry": {
+        "title": "Perizinan",
+        "description": "Dokumen perizinan dan legalitas operasional PT. Coal Global Energy bersifat pribadi dan tidak kami publikasikan secara terbuka di situs ini. Untuk verifikasi atau permintaan dokumen perizinan, silakan hubungi tim kami langsung melalui WhatsApp.",
+        "note": "Sertakan nama perusahaan dan keperluan verifikasi saat menghubungi kami agar tim dapat membantu lebih cepat.",
+        "ctaButton": "Hubungi Kami via WhatsApp",
+        "backButton": "Kembali ke Beranda",
+        "hotlineLabel": "Hotline WhatsApp",
+        "whatsappMessage": "Halo PT. Coal Global Energy, saya ingin meminta informasi dan verifikasi dokumen perizinan perusahaan."
+      },
       "hero": {
         "titlePart1": "Komitmen terhadap",
         "titleHighlight": "Legalitas & Kepatuhan",
@@ -897,7 +906,11 @@
           "Strategic interim storage buffer prior to final plant distribution."
         ],
         "commoditiesTag": "Related Commodities",
-        "products": ["Thermal Coal", "Palm Kernel Shell (PKS)", "Bojonegara Stockpile"]
+        "products": [
+          "Thermal Coal",
+          "Palm Kernel Shell (PKS)",
+          "Bojonegara Stockpile"
+        ]
       },
       "sectors": {
         "headerTitle": "Other Industrial Sectors Served",
@@ -944,6 +957,15 @@
         "title": "Permits & Compliance",
         "description": "This page is currently being prepared. Licensing and compliance documents will be published shortly.",
         "backButton": "Back to Home"
+      },
+      "inquiry": {
+        "title": "Permits & Legal",
+        "description": "We keep PT. Coal Global Energy's operational permits and legal documents private rather than publishing them openly on this website. To verify or request permitting documents, contact our team directly on WhatsApp.",
+        "note": "Include your company name and verification purpose when messaging so our team can respond promptly.",
+        "ctaButton": "Contact Us via WhatsApp",
+        "backButton": "Back to Home",
+        "hotlineLabel": "WhatsApp Hotline",
+        "whatsappMessage": "Hello PT. Coal Global Energy, I would like to inquire about and verify your corporate permits and licensing documents."
       },
       "hero": {
         "titlePart1": "Commitment to",

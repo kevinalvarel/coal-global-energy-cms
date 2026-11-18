@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { ComingSoon } from "@/components/pages/ComingSoon";
+import { LegalContent } from "@/components/landing/legal/legal-content";
 
 export const metadata: Metadata = {
-  title: "Corporate Legal & Certifications",
+  title: "Permits & Legal",
   description:
-    "Official operational permits, environmental compliance, and business licenses of PT Coal Global Energy.",
+    "Corporate permits and licensing documents of PT Coal Global Energy are kept private and available for verification directly via WhatsApp.",
 };
 
-export default function CompanyPage() {
-  return <ComingSoon />;
+export default function LegalPage() {
+  return <LegalContent />;
 }
